@@ -12,7 +12,16 @@
 set -u
 
 project="${CLAUDE_PROJECT_DIR:-$(pwd)}"
-exec node -e '
+# Any failure refuses the edit: Claude Code lets a tool call through on any exit code but 2.
+command -v node >/dev/null 2>&1 || {
+  echo "sensorloop: protect.sh needs node to check the edit, and it is not on PATH, so it refuses the edit." >&2
+  exit 2
+}
+node -e '
+process.on("uncaughtException", (error) => {
+  console.error(`sensorloop: protect.sh failed (${error.message}), so it refuses the edit.`);
+  process.exit(2);
+});
 const fs = require("fs");
 const path = require("path");
 const [project, ...guarded] = process.argv.slice(1);
@@ -51,3 +60,5 @@ if (hit) {
   process.exit(2);
 }
 ' "$project" "$@"
+status=$?
+[ "$status" -eq 0 ] || exit 2
