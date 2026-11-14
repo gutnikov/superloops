@@ -3,6 +3,16 @@ title: The agent's permission rules
 summary: The coding agent's rules for which actions run, which are refused, and which go to a person or a model first.
 sensors: [human-answer, llm-judge]
 layer: agent
+vendors:
+  - name: Claude Code
+    url: https://code.claude.com/docs/en/permissions
+    note: allow, ask and deny rules, and its auto mode
+  - name: Codex
+    url: https://learn.chatgpt.com/docs/security
+    note: an approval policy and a sandbox mode
+  - name: Gemini CLI
+    url: https://geminicli.com/docs/reference/policy-engine/
+    note: rules of its policy engine
 ---
 
 An allow rule lets a matching action run, a deny rule refuses it, and an ask rule puts it to a person (the Human
@@ -27,5 +37,3 @@ mode can hand the decision to a model (the LLM judge).
   (reads and edits in the working directory aside) before they run, and blocks those that go beyond the request,
   such as a force push or a production deploy.
 - **Review rule changes like code**: a change to the committed settings file goes through the project's review.
-
-Examples: Claude Code's allow, ask and deny rules and its auto mode; the approval policies of other coding agents.

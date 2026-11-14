@@ -3,6 +3,24 @@ title: The code host
 summary: Where the project's pull requests, reviews, checks and protected branches live, reached from the command line or its API.
 sensors: [human-review, ci-results, flow-metrics, human-answer]
 layer: system
+vendors:
+  - name: GitHub
+    url: https://github.com/
+    note: "`gh`"
+  - name: GitLab
+    url: https://about.gitlab.com/
+    note: "`glab`"
+  - name: Bitbucket
+    url: https://bitbucket.org/
+  - name: Azure Repos
+    url: https://azure.microsoft.com/en-us/products/devops/repos
+    note: "`az repos`"
+  - name: Gitea
+    url: https://about.gitea.com/
+    note: self-hosted; `tea`
+  - name: Forgejo
+    url: https://forgejo.org/
+    note: self-hosted
 ---
 
 The code host's settings decide which reviews and checks a change needs before it merges. What it reports comes from
@@ -26,5 +44,3 @@ reviews and checks. Settings such as branch protection and deployment environmen
   until someone approves or rejects it, and that choice is the answer.
 - **History** (Delivery flow metrics): `gh api` or `glab api` returns pull requests and their reviews with timestamps
   (opened, first review, merged), from which flow metrics are computed over weeks.
-
-Examples: GitHub (`gh`), GitLab (`glab`).

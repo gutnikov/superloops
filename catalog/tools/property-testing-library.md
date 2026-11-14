@@ -3,6 +3,28 @@ title: Property-based testing library
 summary: Generates inputs for a test from a description of them, and shrinks a failing input to the smallest one that still fails.
 sensors: [input-fault-injection]
 layer: project
+vendors:
+  - name: Hypothesis
+    url: https://hypothesis.readthedocs.io/
+    note: Python
+  - name: fast-check
+    url: https://fast-check.dev/
+    note: JavaScript, TypeScript
+  - name: jqwik
+    url: https://jqwik.net/
+    note: Java
+  - name: proptest
+    url: https://github.com/proptest-rs/proptest
+    note: Rust
+  - name: rapid
+    url: https://github.com/flyingmutant/rapid
+    note: Go
+  - name: FsCheck
+    url: https://fscheck.github.io/FsCheck/
+    note: .NET
+  - name: QuickCheck
+    url: https://hackage.haskell.org/package/QuickCheck
+    note: Haskell
 ---
 
 A property-based testing library lets a test describe its inputs instead of listing them, and state a property: what
@@ -32,5 +54,3 @@ library, adding one is a decision for a person.
   every run.
 - **Run more cases on a schedule** than on every change (`max_examples` in Hypothesis, `numRuns` in fast-check for
   JavaScript).
-
-Examples: Hypothesis (Python), fast-check (JavaScript), jqwik (Java), proptest (Rust), QuickCheck (Haskell).

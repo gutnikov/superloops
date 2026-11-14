@@ -3,6 +3,19 @@ title: CI workflow checker
 summary: "Checks the CI workflows themselves: third-party steps not pinned to a commit, permissions wider than needed, untrusted input in commands."
 sensors: [structure-check, security-scanner]
 layer: project
+vendors:
+  - name: actionlint
+    url: https://github.com/rhysd/actionlint
+    note: GitHub Actions
+  - name: zizmor
+    url: https://docs.zizmor.sh/
+    note: GitHub Actions; security findings
+  - name: pinact
+    url: https://github.com/suzuki-shunsuke/pinact
+    note: GitHub Actions; pins each action to a commit
+  - name: GitLab CLI
+    url: https://docs.gitlab.com/cli/ci/lint/
+    note: "`glab ci lint`, for GitLab CI"
 ---
 
 This tool reads the CI workflows as code that runs with the project's secrets. Which checker fits depends on the CI
@@ -24,5 +37,3 @@ CI). Look in CI and in the pre-commit config for a step that already checks them
 - **Hold workflows that run an agent to the strictest rules**: the narrowest permissions, only the secrets they need,
   and no untrusted text in their prompt or commands.
 - **Before merge**: run the checker on every pull request that changes a workflow.
-
-Examples: actionlint and zizmor (GitHub Actions), `glab ci lint` (GitLab CI).

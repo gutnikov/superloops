@@ -11,7 +11,9 @@ import { CatalogError, loadCatalog } from '../src/index.js';
 const SCHEMAS = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'catalog', 'schema');
 
 const SENSOR = '---\ntitle: Test runner\ntype: computational\nsummary: Runs tests.\nsignal: Exit code.\n---\nBody.\n';
-const TOOL = "---\ntitle: The project's test command\nsummary: Runs the tests.\nsensors: [test-runner]\nlayer: project\n---\n";
+const TOOL =
+  "---\ntitle: The project's test command\nsummary: Runs the tests.\nsensors: [test-runner]\nlayer: project\n" +
+  'vendors:\n  - name: pytest\n    url: https://docs.pytest.org/\n    note: Python\n---\n';
 const LOOP =
   '---\ntitle: Red, then green\nsummary: Test first.\nsensors: [test-runner]\n' +
   'when: Before and after.\nfailure: A test fails.\nnext: Fix the code.\n---\n';
@@ -66,6 +68,17 @@ test('front matter that breaks the schema', () => {
 test('a field the schema does not know', () => {
   const [problem] = problems({ 'sensors/test-runner.md': SENSOR.replace('---\nBody', 'tools: [project-test-command]\n---\nBody') });
   assert.match(problem, /^sensors\/test-runner\.md: front matter must NOT have additional properties/);
+});
+
+test('a tool with no vendors, and a vendor with no link', () => {
+  const noVendors = TOOL.replace(/vendors:[\s\S]*?(?=---)/, '');
+  assert.deepEqual(problems({ 'sensors/test-runner.md': SENSOR, 'tools/project-test-command.md': noVendors }), [
+    "tools/project-test-command.md: front matter must have required property 'vendors'",
+  ]);
+  const noLink = TOOL.replace('    url: https://docs.pytest.org/\n', '');
+  assert.deepEqual(problems({ 'sensors/test-runner.md': SENSOR, 'tools/project-test-command.md': noLink }), [
+    "tools/project-test-command.md: vendors/0 must have required property 'url'",
+  ]);
 });
 
 test('a loop that is a file instead of a folder', () => {

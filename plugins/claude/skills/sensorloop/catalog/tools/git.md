@@ -3,7 +3,10 @@ title: git
 summary: "The repository itself, read through git: the diff, the log, the state of the tree, branches and worktrees."
 sensors: [repository-state]
 layer: project
-homepage: https://git-scm.com/
+vendors:
+  - name: Git
+    url: https://git-scm.com/
+    note: "`git diff`, `git status --porcelain`, `git log`, `git worktree`"
 ---
 
 git reads the repository directly: the diff, the log, the state of the tree, its branches and worktrees. The facts
@@ -23,5 +26,3 @@ shows the other checkouts of the same repository.
 - **Read git, not the report**: a hook or a script takes the fact from git (tests touched, a dirty tree, commits
   ahead) instead of asking the agent.
 - **Look for leftovers**: `git diff --check` reports conflict markers and whitespace errors left in the change.
-
-Examples: `git diff`, `git status --porcelain`, `git log`, `git worktree`.

@@ -3,6 +3,19 @@ title: Model checker
 summary: Explores every reachable state of a formal model within set bounds, checks the stated properties in each, and prints a trace to any state that breaks one.
 sensors: [model-check]
 layer: project
+vendors:
+  - name: TLC
+    url: https://github.com/tlaplus/tlaplus
+    note: TLA+
+  - name: Apalache
+    url: https://apalache-mc.org/
+    note: TLA+, by constraint solving
+  - name: Alloy Analyzer
+    url: https://alloytools.org/
+    note: Alloy
+  - name: SPIN
+    url: https://spinroot.com/
+    note: Promela
 ---
 
 A model checker runs a formal model instead of the code: it starts from each initial state, takes every step the model
@@ -39,5 +52,3 @@ example is not enough.
   prints; read it first, and when it comes from a wrong property, fix the property instead. A change it forces in a
   business rule goes into the project's spec as a rule, or as a question for a person when nobody has decided it.
 - **Run it in CI on every change to the model**, with a time limit, since a run can take far longer than expected.
-
-Examples: TLC and Apalache for TLA+, the Alloy Analyzer.

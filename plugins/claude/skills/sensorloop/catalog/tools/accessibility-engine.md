@@ -3,6 +3,16 @@ title: Accessibility rules engine
 summary: Applies accessibility rules (WCAG) to a rendered page, and names the element behind each violation.
 sensors: [browser-run]
 layer: project
+vendors:
+  - name: axe-core
+    url: https://github.com/dequelabs/axe-core
+    note: JavaScript in the page; the tests call it through `@axe-core/playwright`, `cypress-axe` or `axe-selenium-python`
+  - name: Pa11y
+    url: https://pa11y.org/
+    note: a command line and a CI runner, over axe-core or HTML_CodeSniffer
+  - name: IBM Equal Access Accessibility Checker
+    url: https://github.com/IBMa/equal-access
+    note: IBM's own rules, with a Node.js package for the tests
 ---
 
 Most of the rules come from WCAG, the Web Content Accessibility Guidelines. An engine catches only what a rule can
@@ -28,6 +38,3 @@ command-line runner such as Pa11y opens the pages itself.
 
 A snapshot of the accessibility tree is a different check, made by the browser driver rather than the engine
 (`toMatchAriaSnapshot` in Playwright). It applies no rules, but a role or name lost from a key page shows as a diff.
-
-Examples: axe-core, through `@axe-core/playwright`, `cypress-axe` or `axe-selenium-python`; Pa11y; IBM Equal Access
-Accessibility Checker.

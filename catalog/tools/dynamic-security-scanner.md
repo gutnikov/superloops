@@ -3,6 +3,16 @@ title: Dynamic security scanner
 summary: Probes a running copy of the app from outside, and reports each address with its alert, such as a missing security header or a parameter open to injection.
 sensors: [security-scanner]
 layer: system
+vendors:
+  - name: ZAP
+    url: https://www.zaproxy.org/
+    note: formerly OWASP ZAP; a baseline scan for CI
+  - name: Nuclei
+    url: https://github.com/projectdiscovery/nuclei
+    note: checks written as templates
+  - name: Burp Suite
+    url: https://portswigger.net/burp
+    note: commercial; its scanner comes with the paid editions
 ---
 
 A dynamic security scanner attacks a running copy of the app from outside, as a client would, whatever the app is
@@ -24,5 +34,3 @@ built with. It runs as a container or a service, and is aimed only at an environ
 - **Fail only on the alerts the rules file marks**: the file sets which alerts fail the job, which only warn and which
   are ignored, each with a reason.
 - **Only against a preview or staging with test data**, never production.
-
-Examples: ZAP (formerly OWASP ZAP), Nuclei.

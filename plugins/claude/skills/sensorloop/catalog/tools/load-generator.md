@@ -3,6 +3,25 @@ title: Load generator
 summary: Sends a scripted load to a running service, and reports latency percentiles and errors against thresholds.
 sensors: [performance-measure]
 layer: project
+vendors:
+  - name: k6
+    url: https://k6.io/
+    note: scripts in JavaScript, with thresholds
+  - name: Gatling
+    url: https://gatling.io/
+    note: JVM
+  - name: Locust
+    url: https://locust.io/
+    note: Python
+  - name: Apache JMeter
+    url: https://jmeter.apache.org/
+    note: Java
+  - name: Artillery
+    url: https://www.artillery.io/
+    note: scenarios in YAML; JavaScript
+  - name: Vegeta
+    url: https://github.com/tsenart/vegeta
+    note: HTTP at a constant rate, from the command line
 ---
 
 A load generator runs against a copy of the service that can take the load, never against production.
@@ -23,5 +42,3 @@ When the repository has no load scripts, or no environment can take the load, as
   Gatling through its build plugin.
 - **Keep runs comparable**: the same script, load and environment size each time, with the version under test
   recorded beside the result.
-
-Examples: k6, Gatling (JVM), Locust (Python).

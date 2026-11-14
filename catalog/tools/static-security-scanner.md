@@ -3,6 +3,25 @@ title: Static security scanner
 summary: Reads the source for code patterns known to be unsafe, and reports each with its rule and place.
 sensors: [security-scanner]
 layer: project
+vendors:
+  - name: Semgrep
+    url: https://semgrep.dev/
+    note: several languages
+  - name: CodeQL
+    url: https://codeql.github.com/
+    note: several languages; GitHub's code scanning
+  - name: Bandit
+    url: https://bandit.readthedocs.io/
+    note: Python
+  - name: gosec
+    url: https://github.com/securego/gosec
+    note: Go
+  - name: Brakeman
+    url: https://brakemanscanner.org/
+    note: Ruby on Rails
+  - name: Find Security Bugs
+    url: https://find-sec-bugs.github.io/
+    note: Java, with SpotBugs
 ---
 
 A static security scanner reads the source without running it and matches it against rules for unsafe patterns:
@@ -24,5 +43,3 @@ When these disagree, CI wins. When none of them shows a scanner, ask a person be
   the code host shows findings on the diff.
 - **Fail only on new findings**: compare with the main branch (`--baseline-commit` in Semgrep).
 - **Give every suppression a reason**, in the comment that makes it (`nosemgrep`) or on the dismissed alert.
-
-Examples: Semgrep, CodeQL, Bandit (Python), gosec (Go).

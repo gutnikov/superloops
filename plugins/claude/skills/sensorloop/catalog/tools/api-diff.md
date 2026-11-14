@@ -3,6 +3,28 @@ title: API diff
 summary: Compares an interface description with the one from the last release, and lists the changes that break callers.
 sensors: [api-compatibility]
 layer: project
+vendors:
+  - name: oasdiff
+    url: https://github.com/oasdiff/oasdiff
+    note: OpenAPI
+  - name: Buf
+    url: https://buf.build/docs/breaking/
+    note: "`buf breaking`, for Protocol Buffers"
+  - name: GraphQL Inspector
+    url: https://the-guild.dev/graphql/inspector
+    note: GraphQL schemas
+  - name: API Extractor
+    url: https://api-extractor.com/
+    note: TypeScript libraries
+  - name: cargo-semver-checks
+    url: https://github.com/obi1kenobi/cargo-semver-checks
+    note: Rust libraries
+  - name: japicmp
+    url: https://github.com/siom79/japicmp
+    note: Java libraries
+  - name: apidiff
+    url: https://pkg.go.dev/golang.org/x/exp/cmd/apidiff
+    note: Go packages
 ---
 
 An API diff compares the description of an interface with the one from the last release, and lists the changes that
@@ -28,6 +50,3 @@ adding one.
 - **Fail on breaks only**: `oasdiff breaking --fail-on ERR` exits non-zero on a breaking change and leaves additions
   alone. API Extractor cannot tell the two apart: it fails on any change to the committed report, so a person reads
   its diff.
-
-Examples: oasdiff (OpenAPI), `buf breaking` (Protocol Buffers), API Extractor (TypeScript libraries),
-cargo-semver-checks (Rust libraries).

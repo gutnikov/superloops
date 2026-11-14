@@ -3,6 +3,25 @@ title: Language server
 summary: Gives the agent diagnostics for the file it just edited, before any build.
 sensors: [build-and-types]
 layer: agent
+vendors:
+  - name: gopls
+    url: https://go.dev/gopls/
+    note: Go
+  - name: rust-analyzer
+    url: https://rust-analyzer.github.io/
+    note: Rust
+  - name: Pyright
+    url: https://github.com/microsoft/pyright
+    note: Python
+  - name: typescript-language-server
+    url: https://github.com/typescript-language-server/typescript-language-server
+    note: TypeScript, JavaScript
+  - name: clangd
+    url: https://clangd.llvm.org/
+    note: C and C++
+  - name: Eclipse JDT Language Server
+    url: https://github.com/eclipse-jdtls/eclipse.jdt.ls
+    note: Java
 ---
 
 A language server gives the coding agent the diagnostics for the file it last edited, before any build or test runs.
@@ -24,6 +43,3 @@ the server started.
   an empty list from a server still indexing is not a result. When the list is empty soon after the server started,
   run the type check before taking the file as clean.
 - **Not a replacement for the build**: the full type check and build still run before the work counts as done.
-
-Examples: gopls (Go), rust-analyzer (Rust), Pyright (Python), typescript-language-server (TypeScript), clangd (C and
-C++).

@@ -9,8 +9,9 @@ The catalog of sensors, tools and loops, the plugins built from it, and the site
 - A card's illustration sits beside it, with its name and an image extension (`sensors/<id>.svg`,
   `loops/<id>/card.png`); the site shows it to the right of the card. No front matter field names it.
 - Cards are written for any project, whatever its stack. A tool tied to a language is described as a role (the
-  project's test command, found in the project), with products such as pytest or Jest only as examples from several
-  stacks.
+  project's test command, found in the project). The products that can play the role, from several stacks, are its
+  `vendors` in the front matter, each with a link and a short note; the site shows them as the card's last section.
+  The text names a product only to show how the role is used.
 - A relation is written once, on the more specific card: a tool lists the sensors it builds, a loop the sensors it
   reads. A sensor's tools and loops are computed, never written on its card.
 - `packages/catalog`: the only code that parses cards. The site and the plugin builders import it.

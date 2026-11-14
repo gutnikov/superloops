@@ -3,6 +3,22 @@ title: Component workshop
 summary: A place apart from the app where each of the project's components and screens renders alone, at its own local address, with no backend and no login.
 sensors: [human-review, screenshot, browser-run]
 layer: project
+vendors:
+  - name: Storybook
+    url: https://storybook.js.org/
+    note: React, Vue, Angular, Svelte and others
+  - name: Ladle
+    url: https://ladle.dev/
+    note: React
+  - name: Histoire
+    url: https://histoire.dev/
+    note: Vue, Svelte
+  - name: Lookbook
+    url: https://lookbook.build/
+    note: Ruby on Rails
+  - name: Widgetbook
+    url: https://www.widgetbook.io/
+    note: Flutter
 ---
 
 A workshop shows the interface without the rest of the app: no backend, no login, no data to seed. The design system
@@ -41,6 +57,3 @@ decision for a person: it adds dependencies, files and a command the team carrie
   keeps it from growing into the feature.
 - **Human review of a prototype**: before a person sees it, the agent opens it in a browser and fixes what the console
   shows. The person then looks at it, at its address or in a screenshot, and their answer decides what to build.
-
-Examples: Storybook (React, Vue, Angular, Svelte and others), Ladle (React), Histoire (Vue, Svelte), Lookbook (Ruby on
-Rails), Widgetbook (Flutter).

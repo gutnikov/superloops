@@ -29,7 +29,7 @@ Examples:
 
 A tool is what a sensor is built with. The sensor is what is measured; the tool is how. One sensor can be built with different tools, and one tool can serve several sensors. Choosing the sensors is a design decision; finding the tools is not.
 
-A tool is described by the role it plays, so that its description holds in any project, whatever its stack. When the program behind the role depends on the stack, it is found in the project itself (its CI, its task file, its README) and never assumed.
+A tool is described by the role it plays, so that its description holds in any project, whatever its stack. When the program behind the role depends on the stack, it is found in the project itself (its CI, its task file, its README) and never assumed. The products that can play the role are the tool's vendors, listed on its card.
 
 Examples:
 

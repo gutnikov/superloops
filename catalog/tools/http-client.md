@@ -3,6 +3,20 @@ title: HTTP client
 summary: Sends a request to a service and shows exactly what came back.
 sensors: [smoke-probe, manual-probe]
 layer: project
+vendors:
+  - name: curl
+    url: https://curl.se/
+  - name: HTTPie
+    url: https://httpie.io/
+  - name: xh
+    url: https://github.com/ducaale/xh
+    note: HTTPie's syntax, in one binary
+  - name: Hurl
+    url: https://hurl.dev/
+    note: requests and assertions on their answers, in a text file
+  - name: grpcurl
+    url: https://github.com/fullstorydev/grpcurl
+    note: gRPC
 ---
 
 An HTTP client sends one request to a service and shows what came back: the status, the headers and the body. It
@@ -24,5 +38,3 @@ works the same against a service in any stack.
   code after the body; `-i` adds the headers, `-v` the request too. Keep the command with the value it showed.
 - **Read tokens from the environment** (`-H "Authorization: Bearer $TOKEN"`) rather than typing them into the
   command: a token typed there stays in the shell history and the logs.
-
-Examples: curl, HTTPie, grpcurl (gRPC).

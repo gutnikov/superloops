@@ -3,6 +3,19 @@ title: Link checker
 summary: Follows the links in the project's documents, and reports the ones that lead nowhere.
 sensors: [structure-check]
 layer: project
+vendors:
+  - name: lychee
+    url: https://lychee.cli.rs/
+    note: Markdown, HTML and other text files
+  - name: markdown-link-check
+    url: https://github.com/tcort/markdown-link-check
+    note: Markdown; JavaScript
+  - name: linkinator
+    url: https://github.com/JustinBeckwith/linkinator
+    note: a built site or a running one; JavaScript
+  - name: htmltest
+    url: https://github.com/wjdp/htmltest
+    note: a built HTML site
 ---
 
 A link checker follows the links in the project's documents, and reports the ones that lead nowhere: a file that
@@ -24,5 +37,3 @@ the built site. When there is no step, ask a person before adding one.
   `ignorePatterns` in markdown-link-check's config), with the reason in a comment or in the commit that adds it.
 - **The built site too**: run the checker on the site generator's output after the build, since the links the
   generator writes exist only there.
-
-Examples: lychee, markdown-link-check (JavaScript).

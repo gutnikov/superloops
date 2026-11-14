@@ -3,6 +3,19 @@ title: Migration linter
 summary: Checks database migrations for operations that lock tables, lose data or cannot be undone.
 sensors: [linter]
 layer: project
+vendors:
+  - name: Squawk
+    url: https://squawkhq.com/
+    note: PostgreSQL
+  - name: Atlas
+    url: https://atlasgo.io/
+    note: several databases; `atlas migrate lint`
+  - name: strong_migrations
+    url: https://github.com/ankane/strong_migrations
+    note: Ruby on Rails
+  - name: django-migration-linter
+    url: https://github.com/David-Wobrock/django-migration-linter
+    note: Django
 ---
 
 A migration linter reads the project's database migrations before they run, and flags operations that lock a busy
@@ -24,5 +37,3 @@ are turned off.
   project's migration tool, undoes it and applies it again, so the undo is tested, not assumed.
 - **The production version**: the throwaway database runs the same version as production, since what locks a table
   differs between versions.
-
-Examples: Squawk (PostgreSQL), Atlas (several databases), strong_migrations (Ruby on Rails).

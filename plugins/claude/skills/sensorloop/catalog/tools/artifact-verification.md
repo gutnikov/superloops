@@ -3,6 +3,28 @@ title: Artifact verification
 summary: "Checks what a release ships: checksums, signatures, the architecture of binaries, and the files in a package."
 sensors: [structure-check, smoke-probe]
 layer: project
+vendors:
+  - name: GNU coreutils
+    url: https://www.gnu.org/software/coreutils/
+    note: "`sha256sum --check`, for checksums"
+  - name: GitHub CLI
+    url: https://cli.github.com/manual/gh_attestation_verify
+    note: "`gh attestation verify`, for the build provenance of an artifact"
+  - name: cosign
+    url: https://github.com/sigstore/cosign
+    note: signatures of container images and other files
+  - name: GnuPG
+    url: https://gnupg.org/
+    note: "`gpg --verify`, for detached signatures"
+  - name: codesign
+    url: https://developer.apple.com/documentation/security/code-signing-services
+    note: "macOS; the signature of an app or a binary"
+  - name: file
+    url: https://www.darwinsys.com/file/
+    note: the architecture and format of a binary
+  - name: npm
+    url: https://docs.npmjs.com/cli/commands/npm-pack
+    note: "`npm pack --dry-run`, the files a JavaScript package would ship"
 ---
 
 This tool checks what a release actually ships, not the tree it was built from: a build can pass every test and still
@@ -25,6 +47,3 @@ is where the matching check belongs. The package manifest (the `files` field in 
 - **Install and start it**: install the packed artifact in a clean directory or container and run it once, for example
   with `--version`, so a package that does not start shows before release.
 - **Read back after upload**: download the published artifact and repeat these checks on it, not on the local copy.
-
-Examples: `sha256sum`, `gh attestation verify`, `codesign` (macOS), `npm pack --dry-run` (JavaScript), cosign
-(container images).

@@ -3,6 +3,21 @@ title: The CI system
 summary: Where the project's checks run on every pull request and push, with each job's status and log.
 sensors: [ci-results]
 layer: system
+vendors:
+  - name: GitHub Actions
+    url: https://docs.github.com/en/actions
+    note: read with `gh run view --log-failed`
+  - name: GitLab CI/CD
+    url: https://docs.gitlab.com/ci/
+    note: read with `glab ci`
+  - name: Jenkins
+    url: https://www.jenkins.io/
+  - name: CircleCI
+    url: https://circleci.com/
+  - name: Buildkite
+    url: https://buildkite.com/
+  - name: Azure Pipelines
+    url: https://azure.microsoft.com/en-us/products/devops/pipelines
 ---
 
 The CI system runs the project's checks on every pull request and push, outside the agent's reach. Which system the
@@ -31,5 +46,3 @@ would be writing the checks that judge its own work.
   that log through the system's API.
 - **Slow checks on a schedule**: a nightly run for checks too slow for every push, and a matrix of platforms where the
   project supports several.
-
-Examples: GitHub Actions, GitLab CI, Jenkins; read with `gh run view --log-failed` or `glab ci`.

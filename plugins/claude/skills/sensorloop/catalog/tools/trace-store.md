@@ -3,6 +3,22 @@ title: The project's trace store
 summary: Where the project's traces are collected and queried, fed by the instrumentation in its code.
 sensors: [traces, performance-measure]
 layer: system
+vendors:
+  - name: OpenTelemetry
+    url: https://opentelemetry.io/
+    note: the SDKs in the code, and the Collector that forwards traces
+  - name: Grafana Tempo
+    url: https://grafana.com/oss/tempo/
+    note: TraceQL
+  - name: Jaeger
+    url: https://www.jaegertracing.io/
+  - name: Zipkin
+    url: https://zipkin.io/
+  - name: Honeycomb
+    url: https://www.honeycomb.io/
+  - name: AWS X-Ray
+    url: https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html
+    note: AWS
 ---
 
 The trace store collects the spans the instrumented code sends, one per operation, and answers queries about requests
@@ -29,5 +45,3 @@ choices for the whole project.
 - **Sample everything** in tests and checks: a trace that was sampled out was never recorded.
 - **In tests, collect spans in memory** with an in-memory exporter (`InMemorySpanExporter` in the OpenTelemetry SDKs),
   so assertions run on them with no store.
-
-Examples: OpenTelemetry SDKs and Collector; Tempo (TraceQL), Jaeger, Zipkin.

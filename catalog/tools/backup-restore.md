@@ -3,6 +3,22 @@ title: Backup and restore
 summary: The database's own tools for backing up and restoring, used to prove that a backup can actually be restored.
 sensors: [smoke-probe]
 layer: system
+vendors:
+  - name: PostgreSQL
+    url: https://www.postgresql.org/docs/current/backup.html
+    note: "`pg_dump` and `pg_restore`"
+  - name: pgBackRest
+    url: https://pgbackrest.org/
+    note: PostgreSQL, with restores to a point in time
+  - name: MySQL
+    url: https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html
+    note: "`mysqldump` and the `mysql` client"
+  - name: MongoDB Database Tools
+    url: https://www.mongodb.com/docs/database-tools/
+    note: "`mongodump` and `mongorestore`"
+  - name: Amazon RDS
+    url: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html
+    note: a managed database's snapshots, restored to a new instance; other clouds have their own
 ---
 
 A backup is proven only by restoring it. This tool is the database's own backup and restore, or the managed service's
@@ -32,6 +48,3 @@ database grant.
 
 A restore that errors, or a check above that does not hold, is a failed step, and the signal names it. Give the
 restore a time limit: one that never finishes is a failure too.
-
-Examples: `pg_dump` and `pg_restore` (PostgreSQL), `mysqldump` and the `mysql` client (MySQL), `mongodump` and
-`mongorestore` (MongoDB), a managed database's snapshots.

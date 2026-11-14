@@ -3,6 +3,21 @@ title: Eval runner
 summary: Runs a suite of cases against a prompt, a model or an agent many times, and scores each case's assertions.
 sensors: [eval-set]
 layer: project
+vendors:
+  - name: promptfoo
+    url: https://www.promptfoo.dev/
+  - name: Inspect
+    url: https://inspect.aisi.org.uk/
+    note: Python
+  - name: DeepEval
+    url: https://deepeval.com/
+    note: Python
+  - name: Claude Code
+    url: https://code.claude.com/docs/en/headless
+    note: "`claude -p` once per case; `claude plugin eval` runs a plugin's eval cases"
+  - name: Codex
+    url: https://learn.chatgpt.com/docs/non-interactive-mode
+    note: "`codex exec` once per case"
 ---
 
 One good run of a model proves little. The runner turns many runs into a pass rate per case and overall, the Eval
@@ -26,6 +41,3 @@ When there is none, ask a person before building one: a suite costs money on eve
 - **Compare paired arms**: the same cases with and without the change, on the same model version.
 - **Budget the model calls**: cases times repeats times arms times the cost of one case run (every model call made in
   it), with a cap the run stops at.
-
-Examples: promptfoo; headless runs of a coding agent (`claude -p`, `codex exec`); `claude plugin eval`, which runs the
-eval cases of a Claude Code plugin.

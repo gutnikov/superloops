@@ -3,6 +3,16 @@ title: Fresh-context agent
 summary: A separate agent run that starts with none of the working session's context, cannot change the work, and returns a structured verdict.
 sensors: [llm-reviewer, llm-judge]
 layer: agent
+vendors:
+  - name: Claude Code
+    url: https://code.claude.com/docs/en/sub-agents
+    note: subagents and `claude -p`; the review commands `/code-review` and `/security-review` ship with it
+  - name: Codex
+    url: https://learn.chatgpt.com/docs/non-interactive-mode
+    note: "`codex exec`"
+  - name: Gemini CLI
+    url: https://github.com/google-gemini/gemini-cli
+    note: "`gemini -p`"
 ---
 
 The run builds two sensors, and its prompt decides which. As an LLM reviewer it reads the work against a checklist and
@@ -26,6 +36,3 @@ fail with a critique, or a score.
 - **Ask for output the loop can parse**: a JSON schema, passed with `--json-schema` to `claude -p` or with
   `--output-schema` to `codex exec`.
 - **Limit its run**, so a stuck review ends: `--max-turns` for `claude -p`, or a timeout around the command.
-
-Examples: Claude Code subagents, `claude -p`, `codex exec`; the review commands `/code-review` and `/security-review`
-that ship with Claude Code.
