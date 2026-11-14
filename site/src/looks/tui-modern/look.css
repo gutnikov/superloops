@@ -546,12 +546,12 @@ button.seg-key:focus-visible kbd {
   font-size: 1.0625rem;
 }
 
-.hero-torus {
+.hero-art {
   display: grid;
   place-items: center;
 }
 
-.torus {
+.gyroscope {
   margin: 0;
   font-family: var(--mono);
   font-size: clamp(8px, 0.98vw, 15px);
@@ -563,14 +563,14 @@ button.seg-key:focus-visible kbd {
 }
 
 /* Shade by light: pink in the shade, through lilac, to cyan in full light. */
-.torus .g0 { color: #ff6ac1; }
-.torus .g1 { color: #f179c7; }
-.torus .g2 { color: #e088cf; }
-.torus .g3 { color: #cb98d9; }
-.torus .g4 { color: #b2a9e3; }
-.torus .g5 { color: #97bbed; }
-.torus .g6 { color: #7ecff6; }
-.torus .g7 { color: #6ae4ff; }
+.gyroscope .g0 { color: #ff6ac1; }
+.gyroscope .g1 { color: #f179c7; }
+.gyroscope .g2 { color: #e088cf; }
+.gyroscope .g3 { color: #cb98d9; }
+.gyroscope .g4 { color: #b2a9e3; }
+.gyroscope .g5 { color: #97bbed; }
+.gyroscope .g6 { color: #7ecff6; }
+.gyroscope .g7 { color: #6ae4ff; }
 
 /* The catalog as meters. */
 .meters {
@@ -1934,11 +1934,11 @@ button.seg-key:focus-visible kbd {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .hero-torus {
+  .hero-art {
     order: -1;
   }
 
-  .torus {
+  .gyroscope {
     font-size: clamp(6px, 2.3vw, 11px);
   }
 

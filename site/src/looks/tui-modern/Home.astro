@@ -1,8 +1,9 @@
 ---
-// The home page in the tui-modern look, as panes: the metamodel's first sentence in heavy wide type beside the loop
-// spinning in braille; the catalog as meters, one per kind; Figure 1; then the text, with an outline pane beside it.
+// The home page in the tui-modern look, as panes: the metamodel's first sentence in heavy wide type beside the loops
+// spinning in braille, a gyroscope; the catalog as meters, one per kind; Figure 1; then the text, with an outline pane
+// beside it.
 import ChangePath from '../../components/ChangePath.astro';
-import BrailleTorus from './BrailleTorus.astro';
+import BrailleGyroscope from './BrailleGyroscope.astro';
 import Pane from './Pane.astro';
 import { catalog, kinds } from '../../lib/content.js';
 import { KIND, groups, kindHref } from '../../lib/present.js';
@@ -57,8 +58,8 @@ const meters = kinds.map((kind, i) => ({
         <p class="headline" set:html={headline} />
         {more && <p class="hero-more" set:html={more} />}
       </div>
-      <div class="hero-torus">
-        <BrailleTorus cols={60} rows={28} />
+      <div class="hero-art">
+        <BrailleGyroscope cols={60} rows={28} />
       </div>
     </div>
   </Pane>

@@ -2,8 +2,8 @@
 //
 // @fontsource/iosevka ships the whole font, about 1 MB a weight: every script Iosevka covers. The tui-modern look needs
 // Latin, punctuation, arrows and the like, and the characters a terminal draws with: box drawing, blocks, shapes and
-// braille (the torus on the home page is braille). This keeps those ranges, with room for text the catalog may gain,
-// and writes woff2 files beside the look's stylesheet, which declares them with the same ranges (RANGES below).
+// braille (the gyroscope on the home page is braille). This keeps those ranges, with room for text the catalog may
+// gain, and writes woff2 files beside the look's stylesheet, which declares them with the same ranges (RANGES below).
 // Run it again after upgrading @fontsource/iosevka or changing the ranges.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -30,7 +30,7 @@ export const RANGES = [
   [0x2580, 0x259f], // Block Elements: the meters' bars
   [0x25a0, 0x25ff], // Geometric Shapes: ■ ▸ ▾
   [0x2700, 0x27bf], // Dingbats: ❯ ✓ ✗
-  [0x2800, 0x28ff], // Braille: the torus
+  [0x2800, 0x28ff], // Braille: the gyroscope
   [0xfffd, 0xfffd], // the replacement character
 ];
 
