@@ -1,6 +1,6 @@
 # Metamodel
 
-Design the loops, not just the agent. Agentic development runs on feedback loops: an agent makes a change, a check reads it, and the agent fixes what the check found. We treat these loops as first-class parts of a project: named, kept beside the code, measured, and improved when they let a problem through.
+Stop instructing the agent: give it a feedback loop. An agent makes a change, a check reads it, and the agent fixes what the check found. We treat these loops as first-class parts of a project: named, kept beside the code, measured, and improved when they let a problem through.
 
 <!-- figure -->
 
