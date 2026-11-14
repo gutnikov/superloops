@@ -11,9 +11,12 @@ export interface Props {
 }
 
 const { cols = 56, rows = 26 } = Astro.props;
+// The frame before the first one is drawn: blank, the same rows and columns, so the page keeps the gyroscope's place
+// from its first paint instead of moving the text when the script fills it.
+const blank = (' '.repeat(cols) + '\n').repeat(rows);
 ---
 
-<pre class="gyroscope" data-cols={cols} data-rows={rows} aria-hidden="true"></pre>
+<pre class="gyroscope" data-cols={cols} data-rows={rows} aria-hidden="true">{blank}</pre>
 
 <script>
   const TAU = Math.PI * 2;

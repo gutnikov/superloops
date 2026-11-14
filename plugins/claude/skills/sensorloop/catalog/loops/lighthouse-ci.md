@@ -1,6 +1,6 @@
 ---
 title: Audit the preview's pages
-summary: A page audit loads the preview's main pages in a browser several times and scores them, and fails when a score falls below the project's threshold, such as performance under 0.9. The agent reads the report to find the audits that cost the points, and fixes them.
+summary: A page audit, such as Lighthouse, loads the preview's main pages in a browser several times and scores them, and fails when a score falls below the project's threshold, such as performance under 0.9. The agent reads the report to find the audits that cost the points, and fixes them.
 sensors: [performance-measure, browser-run]
 when: In a CI job after each deploy of a pull request's preview, once the preview is ready. While it works, the agent may audit one page against its own preview.
 failure: An assertion at the error level fails, such as a category score under its minimum or a metric over its limit, with the performance assertions judged on the median of the runs. A page the audit could not load has measured nothing, and fails too.

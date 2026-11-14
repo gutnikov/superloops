@@ -9,7 +9,7 @@ project:
     lint: null
     format: null
     plugin: npm run check:plugin    # the plugin's catalog is current; the plugin and the marketplace are valid
-  has: [ci, deploy]                 # GitHub Actions (check.yml); a manual deploy of the site to Cloudflare
+  has: [ci, deploy, browser]        # GitHub Actions (check.yml); a manual deploy of the site to Cloudflare; Chrome here and on the CI runner
   limits:
     - The person works with the agent in a session.
     - Pushes and the site's deploy wait for the person (the skill's default; the person did not choose otherwise).
@@ -32,6 +32,22 @@ loops:
     wiring: >-
       `ask` rules in .claude/settings.json: git push, npx wrangler@4 deploy, npx wrangler deploy, wrangler deploy.
       Seen to hold in bypassPermissions mode and inside `cd site && ...`.
+    proved: 2026-11-14
+  - id: lighthouse-ci
+    status: active
+    wiring: >-
+      Lighthouse CI 0.15.1 (a dev dependency of site/) audits the built site from site/dist, with no preview: five
+      pages (home, /get-started/, /loops/, a loop card, a sensor card), three runs each, assertions in
+      site/lighthouserc.yml (performance >= 0.9 and layout shift <= 0.1 on the median; accessibility, best practices
+      and SEO at 1; at most 300 KB a page and 40 KB of scripts). CI: the `lighthouse` job in check.yml runs
+      `npm run build && npm run lighthouse` on every pull request and push to main (3 to 4 minutes on this machine),
+      and keeps the reports as the artifact `lighthouse`. In a session: an instruction in LOOPS.md after a change to
+      the site. After a deploy: a PostToolUse hook on Bash runs `npm run lighthouse:live` when the command matches
+      `wrangler deploy` (.sensorloop/hooks/after.sh, then check.sh live-audit): the same pages and minimums on
+      https://sensorloop.dev (site/scripts/lighthouse-live.mjs). A PreToolUse hook on Edit|Write|MultiEdit|NotebookEdit
+      refuses the agent's edits to site/lighthouserc.yml and site/scripts/lighthouse-live.mjs, by real path
+      (.sensorloop/hooks/protect.sh); a shell command that writes them is held only by LOOPS.md and the PR's review.
+      `check` and `lighthouse` are required checks on main (branch protection, administrators included, no reviews).
     proved: 2026-11-14
   - id: llm-evals
     status: proposed
