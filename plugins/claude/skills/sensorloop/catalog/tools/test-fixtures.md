@@ -3,6 +3,25 @@ title: Test fixtures
 summary: The test code that puts the app into the state a test or a probe starts from, such as a user with an unpaid invoice. It seeds the state through the project's testing API rather than the UI.
 sensors: [browser-run, manual-probe, test-runner]
 layer: project
+vendors:
+  - name: Playwright Test
+    url: https://playwright.dev/docs/test-fixtures
+    note: fixtures; JavaScript
+  - name: pytest
+    url: https://docs.pytest.org/en/stable/how-to/fixtures.html
+    note: fixtures; Python
+  - name: factory_bot
+    url: https://github.com/thoughtbot/factory_bot
+    note: Ruby
+  - name: Factory Boy
+    url: https://factoryboy.readthedocs.io/
+    note: Python
+  - name: Fishery
+    url: https://github.com/thoughtbot/fishery
+    note: TypeScript
+  - name: Instancio
+    url: https://www.instancio.org/
+    note: Java
 ---
 
 Most of a test is its precondition. In "a user sends an invoice and sees it marked as sent", creating the user and the
@@ -71,5 +90,3 @@ nothing more, at most a navigation and one assertion. It seeds nothing and never
   it. Tests that need it fail fast and the gap stays in view, where a skipped test or a missing fixture would hide it.
   Its contract check is marked as known to fail (`test.fixme` in Playwright, `xfail` in pytest) until the gap closes,
   and a probe that meets the stub reports its message instead of seeding around it.
-
-Examples: Playwright Test fixtures (JavaScript), pytest fixtures (Python), factory_bot (Ruby), Factory Boy (Python).

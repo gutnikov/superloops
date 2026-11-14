@@ -3,6 +3,19 @@ title: Schema-driven API tester
 summary: Generates requests from an API's schema, sends them to the running API, and checks every response against the schema.
 sensors: [api-compatibility, input-fault-injection]
 layer: project
+vendors:
+  - name: Schemathesis
+    url: https://schemathesis.io/
+    note: OpenAPI and GraphQL
+  - name: RESTler
+    url: https://github.com/microsoft/restler-fuzzer
+    note: OpenAPI, with requests chained by state
+  - name: EvoMaster
+    url: https://github.com/WebFuzzing/EvoMaster
+    note: OpenAPI, GraphQL and RPC
+  - name: CATS
+    url: https://github.com/Endava/cats
+    note: OpenAPI
 ---
 
 A schema-driven API tester tries the requests nobody wrote a test for, malformed ones included. A response that does
@@ -24,5 +37,3 @@ tester against one.
   Schemathesis's flags have changed between versions.
 - **Keep each failure**: the tester reports the failing request, often as a command to replay. Write that request into
   a regular test in the project's suite, so the failure cannot come back unseen.
-
-Examples: Schemathesis, RESTler.

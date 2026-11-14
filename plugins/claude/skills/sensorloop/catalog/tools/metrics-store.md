@@ -3,6 +3,24 @@ title: The project's metrics store
 summary: Where the project's metrics are kept and queried, with its alert and SLO rules.
 sensors: [metrics]
 layer: system
+vendors:
+  - name: Prometheus
+    url: https://prometheus.io/
+    note: PromQL; Alertmanager routes its alerts
+  - name: VictoriaMetrics
+    url: https://victoriametrics.com/
+    note: answers PromQL
+  - name: Grafana Mimir
+    url: https://grafana.com/oss/mimir/
+    note: long-term storage for Prometheus
+  - name: Amazon CloudWatch
+    url: https://aws.amazon.com/cloudwatch/
+    note: AWS
+  - name: Datadog
+    url: https://www.datadoghq.com/
+  - name: Sloth
+    url: https://sloth.dev/
+    note: generates the SLO rules for Prometheus
 ---
 
 The metrics store keeps the metrics of the project's services as time series, and evaluates the project's alert
@@ -29,6 +47,3 @@ When the repository holds no monitoring config, ask a person where the metrics g
 - **Check that a query returns series** before trusting its value: an empty result is no data, not zero.
 - **Check rules before they ship** with the store's own checker: `promtool check rules <rule-file>` and
   `promtool test rules <test-file>` in Prometheus.
-
-Examples: Prometheus (PromQL), VictoriaMetrics, CloudWatch (AWS), Datadog; Sloth to generate SLO rules; Alertmanager
-to route Prometheus alerts.

@@ -3,6 +3,31 @@ title: Dependency scanner
 summary: Lists the project's dependencies and checks each against vulnerability databases and the allowed licences.
 sensors: [security-scanner]
 layer: project
+vendors:
+  - name: Trivy
+    url: https://trivy.dev/
+    note: several languages and container images, licences too
+  - name: OSV-Scanner
+    url: https://google.github.io/osv-scanner/
+    note: several languages, against the OSV database
+  - name: npm audit
+    url: https://docs.npmjs.com/cli/commands/npm-audit
+    note: JavaScript
+  - name: pip-audit
+    url: https://github.com/pypa/pip-audit
+    note: Python
+  - name: govulncheck
+    url: https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck
+    note: Go; only the vulnerable code the program calls
+  - name: cargo-deny
+    url: https://github.com/EmbarkStudios/cargo-deny
+    note: Rust; advisories and licences
+  - name: Dependabot
+    url: https://docs.github.com/en/code-security/dependabot
+    note: alerts and pull requests that update a dependency, on GitHub
+  - name: Syft
+    url: https://github.com/anchore/syft
+    note: writes the list as an SBOM in CycloneDX or SPDX
 ---
 
 A dependency scanner reads the project's lockfiles, or a built image, and checks every package against vulnerability
@@ -27,6 +52,3 @@ When these disagree, CI wins. When none of them shows a scanner, ask a person be
 - **Upgrade to the fixed version** the finding names. Ignore a finding only when no fix exists or it does not apply,
   and give every ignore entry a reason and an expiry date, so an accepted risk is looked at again.
 - **Write the list as an SBOM**, a software bill of materials, when a release needs it: `trivy fs --format cyclonedx .`.
-
-Examples: Trivy, OSV-Scanner, `npm audit` (JavaScript), `pip-audit` (Python), `govulncheck` (Go); the list as an SBOM
-in CycloneDX or SPDX.

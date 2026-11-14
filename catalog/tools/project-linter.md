@@ -3,6 +3,34 @@ title: The project's linter and formatter
 summary: Whatever lints and formats this project's code, found in the project itself rather than assumed.
 sensors: [linter]
 layer: project
+vendors:
+  - name: ESLint
+    url: https://eslint.org/
+    note: JavaScript, TypeScript
+  - name: Biome
+    url: https://biomejs.dev/
+    note: JavaScript, TypeScript; lints and formats
+  - name: Ruff
+    url: https://docs.astral.sh/ruff/
+    note: Python; lints and formats
+  - name: Clippy
+    url: https://doc.rust-lang.org/clippy/
+    note: Rust
+  - name: golangci-lint
+    url: https://golangci-lint.run/
+    note: Go
+  - name: RuboCop
+    url: https://rubocop.org/
+    note: Ruby
+  - name: Prettier
+    url: https://prettier.io/
+    note: formats JavaScript and more
+  - name: Black
+    url: https://black.readthedocs.io/
+    note: formats Python
+  - name: gofmt
+    url: https://pkg.go.dev/cmd/gofmt
+    note: formats Go
 ---
 
 The project chooses its own lint rules and its own format. This tool is whatever already lints and formats its code,
@@ -29,6 +57,3 @@ adding one is a decision for a person.
 - **The pinned version**: run the same version locally and in CI, or the two disagree about the same code.
 - **A custom rule says how to fix**: whoever writes one puts the fix in its message, so whoever reads the finding
   knows what to change.
-
-Examples: ESLint (JavaScript), Ruff (Python), Clippy (Rust), golangci-lint (Go); Prettier (JavaScript and more), Black
-(Python), gofmt (Go).

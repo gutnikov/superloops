@@ -3,6 +3,21 @@ title: Health endpoints
 summary: The addresses a service answers on to say whether it is alive and ready, and the platform's probes that call them.
 sensors: [smoke-probe]
 layer: system
+vendors:
+  - name: Kubernetes probes
+    url: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+    note: liveness, readiness and startup
+  - name: Docker HEALTHCHECK
+    url: https://docs.docker.com/reference/dockerfile/#healthcheck
+  - name: Spring Boot Actuator
+    url: https://docs.spring.io/spring-boot/reference/actuator/endpoints.html
+    note: "Java; `/actuator/health`"
+  - name: ASP.NET Core health checks
+    url: https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks
+    note: .NET
+  - name: gRPC health checking
+    url: https://grpc.io/docs/guides/health-checking/
+    note: the standard health service of a gRPC server
 ---
 
 The paths, the port and the probes differ from one service to the next: look them up in the service's code and
@@ -30,6 +45,3 @@ reads, and propose adding the route.
   service's own dependencies, such as its database and its queue, and liveness (is it alive) does not, so an outage
   of a dependency does not restart every replica. A readiness route that checks nothing says only that the process
   answers.
-
-Examples: `/health` and `/ready`, Kubernetes liveness and readiness probes, Docker's `HEALTHCHECK`, Spring Boot
-Actuator (Java).

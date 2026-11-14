@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Writes the catalog for an agent to read: index.md, one line per card with the relations the loader computes, and
-// every card as it is, under sensors/, tools/ and loops/. The plugin's skill carries this folder; it is generated,
-// so it is rewritten whole and never edited by hand. With --check it writes nothing: it exports to a temporary folder,
+// Writes the catalog for an agent to read: index.md, one line per card with the relations the loader computes (and a
+// tool's vendors, by name), and every card as it is, under sensors/, tools/ and loops/. The plugin's skill carries
+// this folder; it is generated, so it is rewritten whole and never edited by hand. With --check it writes nothing: it exports to a temporary folder,
 // lists each file that differs from <out dir>, and exits 1 when any does.
 // Usage: node src/export.js [--check] <out dir> [catalog folder]   (default catalog: the repository's catalog/)
 import fs from 'node:fs';
@@ -39,7 +39,8 @@ const line = {
     `Tools: ${ids(catalog.toolsOf(card.id))}. Loops: ${ids(catalog.loopsOf(card.id))}.`,
   tools: (card) =>
     `- \`${card.id}\`: **${card.data.title}** (${card.data.layer}). ${card.data.summary} ` +
-    `Builds: ${card.data.sensors.map((s) => `\`${s}\``).join(', ')}.`,
+    `Builds: ${card.data.sensors.map((s) => `\`${s}\``).join(', ')}. ` +
+    `Vendors: ${card.data.vendors.map((v) => v.name).join(', ')}.`,
   loops: (card) =>
     `- \`${card.id}\`: **${card.data.title}**. ${card.data.summary} ` +
     `Reads: ${card.data.sensors.map((s) => `\`${s}\``).join(', ')}. When: ${card.data.when}`,

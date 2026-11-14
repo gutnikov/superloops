@@ -3,6 +3,16 @@ title: Size budget
 summary: Measures the size of what users download (a bundle, a package, a binary) and fails when it passes its limit.
 sensors: [performance-measure]
 layer: project
+vendors:
+  - name: size-limit
+    url: https://github.com/ai/size-limit
+    note: JavaScript bundles
+  - name: Statoscope
+    url: https://github.com/statoscope/statoscope
+    note: webpack bundles, and how two builds differ
+  - name: cargo-bloat
+    url: https://github.com/RazrFalcon/cargo-bloat
+    note: Rust binaries
 ---
 
 The program behind a size budget depends on what the project ships: look for it in the project, and do not assume
@@ -25,6 +35,3 @@ before the check goes into CI.
 - **Report what grew**: `size-limit --why`, or a Statoscope comparison of two builds, names the modules that grew;
   `cargo bloat` lists what takes the space in a Rust binary.
 - **Measure what is sent**: the compressed size (gzip or brotli), when that is what users download.
-
-Examples: size-limit, Statoscope (JavaScript bundles); cargo-bloat (Rust binaries); a size check in CI (any binary or
-package).

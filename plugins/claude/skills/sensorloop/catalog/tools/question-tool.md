@@ -3,6 +3,10 @@ title: The agent's question tool
 summary: The coding agent's way to put a question to a person, with a few options and a free answer, and wait for it.
 sensors: [human-answer]
 layer: agent
+vendors:
+  - name: Claude Code
+    url: https://code.claude.com/docs/en/tools-reference
+    note: "`AskUserQuestion`"
 ---
 
 A question with options takes a person seconds to answer, where an open one starts a conversation. The choice comes
@@ -28,5 +32,3 @@ back to the agent as an answer it can act on: the Human answer.
 
 For example: "The migration drops the `legacy_id` column. How should it run?", with the options "Copy the column to a
 backup table first (Recommended): one more minute, can be undone" and "Drop it now: faster, cannot be undone".
-
-Examples: `AskUserQuestion` in Claude Code.

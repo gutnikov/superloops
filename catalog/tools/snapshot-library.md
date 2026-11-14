@@ -3,6 +3,25 @@ title: The project's snapshot library
 summary: Compares output with an approved reference stored in the repository, and shows the difference when they part.
 sensors: [test-runner]
 layer: project
+vendors:
+  - name: Jest
+    url: https://jestjs.io/docs/snapshot-testing
+    note: JavaScript; Vitest has the same
+  - name: insta
+    url: https://insta.rs/
+    note: Rust
+  - name: syrupy
+    url: https://github.com/syrupy-project/syrupy
+    note: Python, with pytest
+  - name: Verify
+    url: https://github.com/VerifyTests/Verify
+    note: .NET
+  - name: ApprovalTests
+    url: https://approvaltests.com/
+    note: several languages
+  - name: goldie
+    url: https://github.com/sebdah/goldie
+    note: Go; golden files
 ---
 
 The approved output that a snapshot library keeps in the repository is called a reference: a snapshot, an approved
@@ -25,5 +44,3 @@ adding one is a decision for a person.
 - **Stable output**: the test replaces values that change from run to run (times, random ids, absolute paths) with
   fixed ones before it compares, for example with property matchers in Jest, redactions in insta or scrubbers in
   ApprovalTests. A reference then changes only when the output does.
-
-Examples: Jest snapshots (JavaScript), insta (Rust), ApprovalTests (several languages), golden files (common in Go).

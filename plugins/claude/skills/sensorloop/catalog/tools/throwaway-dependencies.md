@@ -3,6 +3,18 @@ title: Throwaway dependencies
 summary: Starts real dependencies (a database, a queue, a cloud API emulator) in containers for one test run, and removes them after it.
 sensors: [test-runner]
 layer: project
+vendors:
+  - name: Testcontainers
+    url: https://testcontainers.com/
+    note: Java, Go, Python, .NET, Node.js and more
+  - name: Docker Compose
+    url: https://docs.docker.com/compose/
+  - name: LocalStack
+    url: https://www.localstack.cloud/
+    note: an emulator of AWS services, started as one of the containers
+  - name: Azurite
+    url: https://github.com/Azure/Azurite
+    note: an emulator of Azure Storage
 ---
 
 The tests meet the real database or queue rather than a mock of it, and every run starts from the same clean state.
@@ -25,6 +37,3 @@ test command starts before the tests and removes after them.
   (`docker compose down -v` removes the volumes too).
 - **Say when it could not start**: without a container runtime, the tests that need one did not run. Report that; it
   is not a pass.
-
-Examples: Testcontainers (Java, Go, Python, .NET, Node.js and more), Docker Compose. An emulator such as LocalStack
-(AWS services) is one of the dependencies they start.

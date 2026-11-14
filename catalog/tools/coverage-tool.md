@@ -3,6 +3,31 @@ title: The project's coverage tool
 summary: Whatever measures which lines and branches this project's tests run, with a report other tools can read.
 sensors: [coverage-mutants]
 layer: project
+vendors:
+  - name: coverage.py
+    url: https://coverage.readthedocs.io/
+    note: Python
+  - name: c8
+    url: https://github.com/bcoe/c8
+    note: JavaScript, from V8's own coverage
+  - name: Istanbul
+    url: https://istanbul.js.org/
+    note: JavaScript; `nyc` is its command line
+  - name: JaCoCo
+    url: https://www.jacoco.org/jacoco/
+    note: Java
+  - name: Go's coverage
+    url: https://go.dev/doc/build-cover
+    note: "`go test -cover` and `go tool cover`"
+  - name: cargo-llvm-cov
+    url: https://github.com/taiki-e/cargo-llvm-cov
+    note: Rust
+  - name: Coverlet
+    url: https://github.com/coverlet-coverage/coverlet
+    note: .NET
+  - name: diff-cover
+    url: https://github.com/Bachmann1234/diff_cover
+    note: the coverage of the changed lines alone, from any of these reports
 ---
 
 Coverage is measured by a tool tied to the project's language and test framework. This tool is the one the project
@@ -27,6 +52,3 @@ When these disagree, CI wins. When none of them names a tool, ask a person befor
   main branch.
 - **Keep a floor that only rises**: the minimum coverage, set in the config (`fail_under` in coverage.py,
   `coverageThreshold` in Jest). Raise it as coverage grows, and never lower it to make a run pass.
-
-Examples: coverage.py (Python), c8 and Istanbul (JavaScript), JaCoCo (Java), `go test -cover` (Go); diff-cover for
-the changed lines.

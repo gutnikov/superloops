@@ -17,7 +17,7 @@ export const KIND = {
     many: 'Tools',
     lede:
       'What the sensors are built with. Each tool is described for any project: one tied to a language is the ' +
-      'role it plays, found in the project, with products named only as examples.',
+      'role it plays, found in the project, and its vendors are the products that can play it.',
   },
   loops: {
     one: 'Loop',
@@ -121,10 +121,7 @@ export function facts(catalog, card) {
         ['Loops', links(catalog.loopsOf(card.id))],
       ];
     case 'tools':
-      return [
-        ['Builds', sensors()],
-        ...(card.data.homepage ? [['Homepage', `<a href="${escape(card.data.homepage)}">${escape(card.data.homepage)}</a>`]] : []),
-      ];
+      return [['Builds', sensors()]];
     case 'loops':
       return [
         ['Reads', sensors()],
@@ -134,4 +131,18 @@ export function facts(catalog, card) {
         ['Tools', links(catalog.toolsFor(card))],
       ];
   }
+}
+
+/**
+ * A tool's vendors as the last section of its text, in Markdown: each product linked, with its note after it. Other
+ * kinds have none.
+ */
+export function vendors(card) {
+  if (card.kind !== 'tools') return '';
+  const name = (/** @type {string} */ text) => text.replace(/[\\`*_[\]]/g, '\\$&');
+  const items = card.data.vendors.map(
+    (/** @type {{ name: string, url: string, note?: string }} */ v) =>
+      `- **[${name(v.name)}](<${v.url}>)**${v.note ? `: ${v.note}` : ''}`,
+  );
+  return ['## Vendors', '', ...items].join('\n');
 }

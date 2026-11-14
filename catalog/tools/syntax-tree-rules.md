@@ -3,6 +3,19 @@ title: Syntax-tree pattern rules
 summary: Rules written as code patterns over the syntax tree, for conventions no stock linter knows.
 sensors: [linter, security-scanner]
 layer: project
+vendors:
+  - name: ast-grep
+    url: https://ast-grep.github.io/
+    note: several languages; rules in YAML
+  - name: Semgrep
+    url: https://docs.semgrep.dev/writing-rules/overview
+    note: custom rules, several languages
+  - name: ESLint
+    url: https://eslint.org/docs/latest/rules/no-restricted-syntax
+    note: "`no-restricted-syntax` with selectors over the syntax tree, or a rule of the project's own; JavaScript"
+  - name: Comby
+    url: https://comby.dev/
+    note: patterns over brackets and strings, in any language
 ---
 
 Some conventions belong to one project, and no stock linter knows them: every database call goes through the
@@ -24,5 +37,3 @@ rules, adding the tool and its first rules is a decision for a person.
 - **Test every rule**: beside each rule, keep examples that must match and examples that must not, and run them as
   tests of the rule (`ast-grep test`, `semgrep --test`).
 - **Say how to fix**: the rule's message names the fix, not only the problem.
-
-Examples: ast-grep, Semgrep custom rules.

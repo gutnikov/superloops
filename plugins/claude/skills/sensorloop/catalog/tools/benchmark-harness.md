@@ -3,6 +3,31 @@ title: The project's benchmark harness
 summary: Whatever runs this project's benchmarks and keeps their results to compare against.
 sensors: [performance-measure]
 layer: project
+vendors:
+  - name: pytest-benchmark
+    url: https://github.com/ionelmc/pytest-benchmark
+    note: Python
+  - name: Criterion.rs
+    url: https://github.com/bheisler/criterion.rs
+    note: Rust
+  - name: Go's benchmarks
+    url: https://pkg.go.dev/testing#hdr-Benchmarks
+    note: "`go test -bench`, compared across runs with `benchstat`"
+  - name: JMH
+    url: https://github.com/openjdk/jmh
+    note: Java
+  - name: BenchmarkDotNet
+    url: https://benchmarkdotnet.org/
+    note: .NET
+  - name: Vitest
+    url: https://vitest.dev/guide/features.html#benchmarking
+    note: "`vitest bench`, JavaScript"
+  - name: hyperfine
+    url: https://github.com/sharkdp/hyperfine
+    note: any command, timed from the shell
+  - name: github-action-benchmark
+    url: https://github.com/benchmark-action/github-action-benchmark
+    note: keeps the results of each CI run, and comments when one regresses
 ---
 
 The benchmark harness runs the project's benchmarks and keeps their results, so a change can be measured against what
@@ -25,5 +50,3 @@ When there is none, ask a person before adding one.
   noise falls on both.
 - **Compare several runs with a saved baseline**: `go test -count=10` compared with `benchstat`; `--benchmark-save`
   and `--benchmark-compare` in pytest-benchmark; `--save-baseline` and `--baseline` in criterion.
-
-Examples: pytest-benchmark (Python), criterion (Rust), `go test -bench` (Go), JMH (Java), BenchmarkDotNet (.NET).

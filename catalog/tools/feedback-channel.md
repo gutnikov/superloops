@@ -3,6 +3,22 @@ title: Feedback channel
 summary: "The ways users tell the team what works and what does not: an in-product feedback command, a form, the support desk, experiment results."
 sensors: [user-feedback]
 layer: system
+vendors:
+  - name: Zendesk
+    url: https://www.zendesk.com/
+    note: a support desk
+  - name: Intercom
+    url: https://www.intercom.com/
+    note: a support desk, with messages in the product
+  - name: PostHog
+    url: https://posthog.com/
+    note: surveys in the product, and experiments
+  - name: GrowthBook
+    url: https://www.growthbook.io/
+    note: an experiment platform, open source
+  - name: Optimizely
+    url: https://www.optimizely.com/
+    note: an experiment platform
 ---
 
 Which channels exist depends on the product. Look for them in the product and in its team's tools rather than assume
@@ -24,6 +40,3 @@ rather than work around it: adding a channel is the team's decision.
 - **Tie each item to the version** or the feature flag the user had, where the channel records it.
 - **Strip personal data** before an item leaves the tool.
 - **Read an experiment's results** only after it has run its planned length.
-
-Examples: a `/feedback` command in the product, a feedback form, a support desk such as Zendesk or Intercom, an
-experiment platform such as GrowthBook or Optimizely.

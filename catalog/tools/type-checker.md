@@ -3,6 +3,22 @@ title: The project's type checker
 summary: Checks the types of the code without running it, where the language has a checker separate from its build.
 sensors: [build-and-types]
 layer: project
+vendors:
+  - name: TypeScript
+    url: https://www.typescriptlang.org/
+    note: "`tsc --noEmit`"
+  - name: mypy
+    url: https://mypy-lang.org/
+    note: Python
+  - name: Pyright
+    url: https://github.com/microsoft/pyright
+    note: Python
+  - name: Sorbet
+    url: https://sorbet.org/
+    note: Ruby
+  - name: PHPStan
+    url: https://phpstan.org/
+    note: PHP
 ---
 
 Where a language checks its types with a program separate from its build, this tool is that checker, with the settings
@@ -26,5 +42,3 @@ has no checker, adding one, and choosing how strict it is, is a decision for a p
 - **Look for new suppressions in the diff**: the checker does not report a new `# type: ignore`, `@ts-ignore` or
   `@ts-expect-error`, so a search over the diff finds them; `mypy --warn-unused-ignores` reports the ones no longer
   needed.
-
-Examples: `tsc --noEmit` (TypeScript), mypy and Pyright (Python), Sorbet (Ruby).

@@ -3,6 +3,25 @@ title: The project's executable spec
 summary: The project's requirement and spec files, in formats a program can read (an event model, decision tables, API contracts), with the checks that read them.
 sensors: [requirement-trace, spec-completeness]
 layer: project
+vendors:
+  - name: Event Modeling
+    url: https://eventmodeling.org/
+    note: the spine, as commands, events and screens on a timeline
+  - name: DMN
+    url: https://www.omg.org/dmn/
+    note: decision tables, checked with dmn-check
+  - name: OpenAPI
+    url: https://www.openapis.org/
+    note: the contract of an HTTP API
+  - name: Doorstop
+    url: https://github.com/doorstop-dev/doorstop
+    note: requirements as YAML files
+  - name: OpenFastTrace
+    url: https://github.com/itsallcode/openfasttrace
+    note: the trace, from tags in code and tests
+  - name: Sphinx-Needs
+    url: https://sphinx-needs.readthedocs.io/
+    note: requirements and their links, as objects in Sphinx documents
 ---
 
 An executable spec is a spec kept as text in the repository, in formats a program can check, so that a gap in it is
@@ -49,6 +68,3 @@ formal model.
   work list. Ids stay stable, since tests are tagged with them: a renamed example is a changed test.
 - **The production signals for the release**: for each change, list the production signals of the requirements it
   touches, so that the loop that confirms the release in production knows what to look for.
-
-Examples: Event Modeling and DMN decision tables for the spec; Doorstop (requirements as YAML files), OpenFastTrace
-(tags in code and tests) and Sphinx-Needs (linked objects in Sphinx documents) for the requirements and the trace.

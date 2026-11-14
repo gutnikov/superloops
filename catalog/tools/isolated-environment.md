@@ -3,6 +3,25 @@ title: Isolated environment
 summary: "An environment of its own for each agent run: its own checkout, dependencies, network rules and secrets."
 sensors: [isolation-probe]
 layer: system
+vendors:
+  - name: git worktree
+    url: https://git-scm.com/docs/git-worktree
+    note: a checkout per run
+  - name: Dev Containers
+    url: https://containers.dev/
+    note: the environment as a container, described in the repository
+  - name: Nix
+    url: https://nixos.org/
+    note: the tools at exact versions, described in the repository
+  - name: Claude Code's sandbox
+    url: https://code.claude.com/docs/en/sandboxing
+    note: the paths the agent may write and the hosts it may reach
+  - name: GitHub Codespaces
+    url: https://github.com/features/codespaces
+    note: a dev container in the cloud, per branch
+  - name: E2B
+    url: https://e2b.dev/
+    note: cloud sandboxes for agent runs
 ---
 
 Each agent run gets an environment of its own, so the same code gives the same signal and runs side by side do not
@@ -25,5 +44,3 @@ configuration rather than assume a default.
 - **Only the secrets the task needs**, and only those of test accounts, never production ones.
 - **Nothing left after the run**: the checkout, the services and their data removed, and the secrets revoked or
   expired.
-
-Examples: git worktrees, dev containers, Nix, the coding agent's sandbox.

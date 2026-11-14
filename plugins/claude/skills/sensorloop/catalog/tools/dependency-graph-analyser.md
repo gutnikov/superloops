@@ -3,6 +3,28 @@ title: Dependency graph analyser
 summary: Builds the graph of imports between modules, checks it against the allowed directions, and measures its coupling.
 sensors: [linter, dependency-graph]
 layer: project
+vendors:
+  - name: dependency-cruiser
+    url: https://github.com/sverweij/dependency-cruiser
+    note: JavaScript, TypeScript
+  - name: madge
+    url: https://github.com/pahen/madge
+    note: JavaScript, TypeScript; cycles, and the graph as an image
+  - name: ArchUnit
+    url: https://www.archunit.org/
+    note: Java
+  - name: import-linter
+    url: https://github.com/import-linter/import-linter
+    note: Python
+  - name: Deptrac
+    url: https://github.com/deptrac/deptrac
+    note: PHP
+  - name: NetArchTest
+    url: https://github.com/BenMorris/NetArchTest
+    note: .NET
+  - name: go-arch-lint
+    url: https://github.com/fe3dback/go-arch-lint
+    note: Go
 ---
 
 The project's rules name its layers and the directions in which one may import another: the UI may import the
@@ -26,5 +48,3 @@ no rules, adding the tool and naming its layers is a decision for a person.
   over time.
 - **Save the coupling from each run**: cycles, fan-in and fan-out per module, on each pull request and on a schedule,
   so a new cycle, or a module whose coupling grew, shows against the values approved before.
-
-Examples: dependency-cruiser (JavaScript), ArchUnit (Java), import-linter (Python), deptrac (PHP).

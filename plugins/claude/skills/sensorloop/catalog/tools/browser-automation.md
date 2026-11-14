@@ -3,6 +3,22 @@ title: Browser automation
 summary: "A library that drives a real browser from a script: it clicks, types and waits, and records screenshots, video and traces."
 sensors: [browser-run, screenshot]
 layer: project
+vendors:
+  - name: Playwright
+    url: https://playwright.dev/
+    note: JavaScript, Python, Java, .NET
+  - name: Puppeteer
+    url: https://pptr.dev/
+    note: JavaScript
+  - name: Cypress
+    url: https://www.cypress.io/
+    note: JavaScript
+  - name: Selenium
+    url: https://www.selenium.dev/
+    note: Java, Python, C#, Ruby, JavaScript
+  - name: WebdriverIO
+    url: https://webdriver.io/
+    note: JavaScript
 ---
 
 Test scripts written with the library build the Browser run sensor; the screenshots, videos and traces it records
@@ -29,6 +45,3 @@ the main user flow.
 - **Keep the evidence of each failed run**: a trace, a screenshot or a video, for a model or a person to look at.
 - **Compare screenshots against approved images** (`toHaveScreenshot` in Playwright, a plugin in Cypress). An intended
   change updates the approved image in the same change, where a reviewer sees it.
-
-Examples: Playwright (JavaScript, Python, Java, .NET), Puppeteer (JavaScript), Cypress (JavaScript), Selenium (Java,
-Python, C#, Ruby, JavaScript).

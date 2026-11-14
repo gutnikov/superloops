@@ -3,6 +3,28 @@ title: Fuzzer
 summary: Feeds a function a stream of mutated inputs guided by coverage, and keeps each input that crashes it.
 sensors: [input-fault-injection]
 layer: project
+vendors:
+  - name: libFuzzer
+    url: https://llvm.org/docs/LibFuzzer.html
+    note: C and C++, with sanitizers such as AddressSanitizer
+  - name: AFL++
+    url: https://aflplus.plus/
+    note: C, C++ and compiled binaries
+  - name: Go's fuzzing
+    url: https://go.dev/doc/security/fuzz/
+    note: "`go test -fuzz`"
+  - name: cargo-fuzz
+    url: https://github.com/rust-fuzz/cargo-fuzz
+    note: Rust
+  - name: Atheris
+    url: https://github.com/google/atheris
+    note: Python
+  - name: Jazzer
+    url: https://github.com/CodeIntelligenceTesting/jazzer
+    note: Java and the JVM
+  - name: OSS-Fuzz
+    url: https://google.github.io/oss-fuzz/
+    note: runs these fuzzers without pause for open-source projects
 ---
 
 A fuzzer calls one function, the fuzz target, with inputs it keeps mutating, and follows coverage towards new paths.
@@ -26,6 +48,3 @@ The fuzzer is tied to the language and the build; look for the one the project a
   starts clean, so save the corpus between runs as a cache or an artifact (Go keeps the inputs it adds in
   `$GOCACHE/fuzz`); otherwise every run starts again from the starting inputs.
 - **Replay a crash** from the input file the fuzzer saved: Go replays `testdata/fuzz/` on a plain `go test`.
-
-Examples: libFuzzer (C and C++), `go test -fuzz` (Go), cargo-fuzz (Rust), AFL++, Atheris (Python); with sanitizers
-such as AddressSanitizer.

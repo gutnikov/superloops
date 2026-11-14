@@ -3,6 +3,25 @@ title: Chaos platform
 summary: Injects failures into a running environment (processes killed, network delayed, resources exhausted) while checking that it stays healthy.
 sensors: [input-fault-injection]
 layer: system
+vendors:
+  - name: Chaos Mesh
+    url: https://chaos-mesh.org/
+    note: Kubernetes
+  - name: LitmusChaos
+    url: https://litmuschaos.io/
+    note: Kubernetes
+  - name: AWS Fault Injection Service
+    url: https://aws.amazon.com/fis/
+    note: AWS
+  - name: Azure Chaos Studio
+    url: https://azure.microsoft.com/en-us/products/chaos-studio
+    note: Azure
+  - name: Gremlin
+    url: https://www.gremlin.com/
+    note: a hosted service, for several platforms
+  - name: Chaos Toolkit
+    url: https://chaostoolkit.org/
+    note: experiments as files, with drivers for several platforms
 ---
 
 A chaos platform runs experiments on a running environment: it kills processes, delays the network or exhausts a
@@ -27,5 +46,3 @@ When there is none, ask a person: installing a chaos platform changes a shared e
 - **Give every experiment abort conditions and a duration**, so it stops itself when the steady state breaks.
 - **Start small** (one pod, one dependency), and widen the blast radius, the part of the system a fault reaches, only
   after the steady state holds.
-
-Examples: Chaos Mesh and LitmusChaos (Kubernetes), AWS Fault Injection Service (AWS).

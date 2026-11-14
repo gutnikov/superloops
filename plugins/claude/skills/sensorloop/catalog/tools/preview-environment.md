@@ -3,6 +3,24 @@ title: Preview environment
 summary: A running copy of the change, deployed for each pull request at its own address, for the checks that need the app to run.
 sensors: [browser-run, smoke-probe, security-scanner, performance-measure]
 layer: system
+vendors:
+  - name: GitLab review apps
+    url: https://docs.gitlab.com/ci/review_apps/
+  - name: Vercel
+    url: https://vercel.com/docs/deployments/environments
+    note: a preview deployment per branch
+  - name: Netlify
+    url: https://docs.netlify.com/deploy/deploy-types/deploy-previews/
+    note: deploy previews
+  - name: Cloudflare Workers
+    url: https://developers.cloudflare.com/workers/versions-and-deployments/version-urls/
+    note: preview URLs per version
+  - name: Render
+    url: https://render.com/docs/preview-environments
+    note: preview environments, services and databases included
+  - name: Argo CD
+    url: https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Pull-Request/
+    note: a namespace per pull request in Kubernetes
 ---
 
 Checks point at the preview's address: a Browser run, a Smoke and health probe, a Security scanner that probes the
@@ -28,5 +46,3 @@ each running copy costs money, so a person decides.
 - **Use test data only**: no copy of production data and no real users' accounts.
 - **Remove it after merge or close**, in the same configuration that creates it, so old previews neither pile up nor
   answer for a change that is gone.
-
-Examples: GitLab review apps, Vercel or Netlify previews, a namespace per pull request in Kubernetes.

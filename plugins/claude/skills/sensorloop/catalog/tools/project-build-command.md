@@ -3,6 +3,31 @@ title: The project's build command
 summary: Whatever builds this project, found in the project itself rather than assumed.
 sensors: [build-and-types]
 layer: project
+vendors:
+  - name: npm
+    url: https://docs.npmjs.com/cli/using-npm/scripts
+    note: "`npm run build`, JavaScript"
+  - name: Cargo
+    url: https://doc.rust-lang.org/cargo/
+    note: "`cargo build`, Rust"
+  - name: Go
+    url: https://pkg.go.dev/cmd/go
+    note: "`go build ./...`"
+  - name: Gradle
+    url: https://gradle.org/
+    note: "`./gradlew build`, the JVM"
+  - name: Maven
+    url: https://maven.apache.org/
+    note: "`mvn package`, the JVM"
+  - name: .NET CLI
+    url: https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
+    note: "`dotnet build`"
+  - name: Bazel
+    url: https://bazel.build/
+    note: "`bazel build //...`, several languages"
+  - name: Make
+    url: https://www.gnu.org/software/make/
+    note: any language
 ---
 
 The project, not the loop, chooses how it is built. This tool is the command the project already builds with, found in
@@ -31,6 +56,3 @@ rather than guess.
 - **The same flags as CI**: warnings that CI treats as errors are errors locally too.
 - **Warm caches**: the build and dependency caches kept between runs make it fast enough to run often. Build from
   clean after the dependencies or the build's config change, since a stale cache can hide an error.
-
-Examples: `npm run build` (JavaScript), `cargo build` (Rust), `go build ./...` (Go), `./gradlew build` (JVM),
-`bazel build //...` (several languages).

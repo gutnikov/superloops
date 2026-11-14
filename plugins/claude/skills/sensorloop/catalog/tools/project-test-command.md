@@ -3,6 +3,34 @@ title: The project's test command
 summary: Whatever runs this project's tests, found in the project itself rather than assumed.
 sensors: [test-runner]
 layer: project
+vendors:
+  - name: pytest
+    url: https://docs.pytest.org/
+    note: Python
+  - name: Jest
+    url: https://jestjs.io/
+    note: JavaScript
+  - name: Vitest
+    url: https://vitest.dev/
+    note: JavaScript, TypeScript
+  - name: go test
+    url: https://pkg.go.dev/cmd/go#hdr-Test_packages
+    note: Go
+  - name: cargo test
+    url: https://doc.rust-lang.org/cargo/commands/cargo-test.html
+    note: Rust
+  - name: JUnit
+    url: https://junit.org/
+    note: Java, run by Gradle or Maven
+  - name: RSpec
+    url: https://rspec.info/
+    note: Ruby
+  - name: dotnet test
+    url: https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-test
+    note: .NET
+  - name: PHPUnit
+    url: https://phpunit.de/
+    note: PHP
 ---
 
 The project, not the loop, chooses how its tests run. This tool is the command the project already uses, found in

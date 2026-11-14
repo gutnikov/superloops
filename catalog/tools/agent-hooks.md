@@ -3,6 +3,16 @@ title: The agent's hooks
 summary: "Commands the coding agent runs before and after each tool call, when a call needs permission, and when it is about to stop: a hook can record a call, refuse it, answer the permission prompt, or keep the agent from stopping."
 sensors: [agent-activity]
 layer: agent
+vendors:
+  - name: Claude Code
+    url: https://code.claude.com/docs/en/hooks
+    note: "`PreToolUse`, `PermissionRequest`, `PostToolUse`, `Stop` and more"
+  - name: Cursor
+    url: https://cursor.com/docs/hooks
+    note: "`preToolUse`, `postToolUse`, `stop`"
+  - name: Gemini CLI
+    url: https://geminicli.com/docs/hooks/
+    note: "`BeforeTool`, `AfterTool` and more"
 ---
 
 A hook sees each tool call as it happens, before or after it runs. Hooks are the live source of the Agent activity
@@ -34,6 +44,3 @@ from `.cursor/hooks.json`. A hook runs with the user's full rights, so a person 
 
 A hook runs on every call it matches, so a slow hook slows each of them. Keep hooks fast, and match only the tools
 they check (the `matcher` field in Claude Code).
-
-Examples: Claude Code hooks (`PreToolUse`, `PermissionRequest`, `PostToolUse`, `Stop`), Cursor hooks (`preToolUse`,
-`postToolUse`, `stop`).

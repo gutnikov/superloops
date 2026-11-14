@@ -3,6 +3,13 @@ title: Session transcripts
 summary: "The transcript the coding agent keeps of each session: the prompts, the tool calls and their results."
 sensors: [agent-activity, loop-outcomes]
 layer: agent
+vendors:
+  - name: Claude Code
+    url: https://code.claude.com/docs/en/monitoring-usage
+    note: a JSON Lines file per session under `~/.claude/projects/`; OpenTelemetry events
+  - name: Codex
+    url: https://learn.chatgpt.com/docs/codex
+    note: files under `~/.codex/sessions/`
 ---
 
 Read afterwards, and across many sessions, transcripts show what the agent actually did, where a hook sees one call at
@@ -27,5 +34,3 @@ exports OpenTelemetry events sends them to the collector named in its settings.
   secrets, and any file contents that must not leave, before anything leaves the machine.
 - **Keep them long enough**: Claude Code deletes transcripts after 30 days by default (`cleanupPeriodDays`), so copy
   the ones you will need later before then.
-
-Examples: Claude Code's and Codex's session transcripts, OpenTelemetry events from the agent.

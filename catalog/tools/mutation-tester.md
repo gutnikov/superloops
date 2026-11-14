@@ -3,6 +3,25 @@ title: Mutation tester
 summary: Makes small changes to the code, runs the tests against each, and reports the changes no test noticed.
 sensors: [coverage-mutants]
 layer: project
+vendors:
+  - name: Stryker
+    url: https://stryker-mutator.io/
+    note: JavaScript, TypeScript, C#, Scala
+  - name: PIT
+    url: https://pitest.org/
+    note: Java
+  - name: mutmut
+    url: https://github.com/boxed/mutmut
+    note: Python
+  - name: cargo-mutants
+    url: https://mutants.rs/
+    note: Rust
+  - name: Infection
+    url: https://infection.github.io/
+    note: PHP
+  - name: Gremlins
+    url: https://github.com/go-gremlins/gremlins
+    note: Go
 ---
 
 A mutation tester changes the code in small ways (a `<` for a `<=`, a call removed) and runs the project's tests
@@ -26,5 +45,3 @@ When the project has none, choosing one for its language and test framework is a
 - **Run the whole codebase on a schedule**: one test run per mutant makes it the slowest check the project has.
 - **Keep a timeout per mutant**, since a mutant can loop forever.
 - **Keep the report**, as JSON for other tools or HTML for people: it lists each surviving mutant with its change.
-
-Examples: Stryker (JavaScript, C#), PIT (Java), mutmut (Python), cargo-mutants (Rust).

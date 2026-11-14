@@ -3,6 +3,16 @@ title: Browser access for the agent
 summary: Gives the agent itself a browser to act in, through the page's accessibility tree, with the console and network in view.
 sensors: [browser-run, manual-probe, screenshot]
 layer: agent
+vendors:
+  - name: Playwright MCP
+    url: https://github.com/microsoft/playwright-mcp
+    note: the page as its accessibility tree
+  - name: Chrome DevTools MCP
+    url: https://github.com/ChromeDevTools/chrome-devtools-mcp
+    note: Chrome, with its console, network and performance traces
+  - name: agent-browser
+    url: https://github.com/vercel-labs/agent-browser
+    note: a command line rather than an MCP server
 ---
 
 Browser automation runs test scripts; this tool lets the agent open the app and look for itself, while it works and
@@ -28,5 +38,3 @@ own instructions give it (`npx @playwright/mcp@latest` for Playwright MCP), then
   one, when a model or a person has to judge the result by looking at it.
 - **Give each session its own browser profile**, so logins and caches left by earlier runs do not change what the
   agent sees.
-
-Examples: Playwright MCP, Chrome DevTools MCP.

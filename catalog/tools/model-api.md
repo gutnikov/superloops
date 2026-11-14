@@ -3,6 +3,19 @@ title: Model API
 summary: A direct call to a language model with a rubric prompt and a structured answer, outside any agent.
 sensors: [llm-judge, eval-set]
 layer: system
+vendors:
+  - name: Claude API
+    url: https://platform.claude.com/docs/en/home
+  - name: OpenAI API
+    url: https://developers.openai.com/api/docs
+  - name: Gemini API
+    url: https://ai.google.dev/gemini-api/docs
+  - name: Amazon Bedrock
+    url: https://aws.amazon.com/bedrock/
+    note: several providers' models behind one API
+  - name: promptfoo
+    url: https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/
+    note: model-graded assertions, which call any of these with a rubric
 ---
 
 A direct call to a language model, outside any agent. For an LLM judge, a rubric and the thing to judge go in, and a
@@ -25,5 +38,3 @@ Without a key or a budget, make no call: ask a person for them.
 - **Ask for a structured answer**: a JSON schema or a tool the model must call, with the verdict and its reason.
 - **Ask an odd number of times, three for example, and take the majority**, and keep each answer.
 - **Cap the calls and tokens per run**, and send large sets through a batch API, at a lower price.
-
-Examples: the Claude API, the OpenAI and Gemini APIs, promptfoo's model-graded assertions.

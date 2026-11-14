@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Tool card",
-  "description": "The front matter of catalog/tools/<id>.md. The id is the file name. A tool card is written for any project: one tied to a language describes the role (the project's test command), and names products only as examples from several stacks.",
+  "description": "The front matter of catalog/tools/<id>.md. The id is the file name. A tool card is written for any project: one tied to a language describes the role (the project's test command), and its vendors list the products that can play it, from several stacks.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["title", "summary", "sensors", "layer"],
+  "required": ["title", "summary", "sensors", "layer", "vendors"],
   "properties": {
     "title": { "type": "string", "minLength": 1 },
     "summary": { "type": "string", "minLength": 1 },
@@ -19,6 +19,20 @@
       "description": "Where the tool is: project (run from the project's checkout: its commands and libraries, and the command-line tools beside them), system (outside it: a service, an environment or a store the project reaches), agent (part of the coding agent itself).",
       "enum": ["project", "system", "agent"]
     },
-    "homepage": { "type": "string", "pattern": "^https://" }
+    "vendors": {
+      "description": "The products that can play this tool's role, from several stacks. The list is not closed, and the one a project uses is still found in the project. Each names where to read about it and, in a short note, the stack it serves or how it plays the role.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "url"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "pattern": "^https://" },
+          "note": { "description": "One line of Markdown, shown after the name.", "type": "string", "minLength": 1 }
+        }
+      }
+    }
   }
 }

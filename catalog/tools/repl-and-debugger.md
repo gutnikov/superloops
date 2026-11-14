@@ -3,6 +3,28 @@ title: The language's REPL and debugger
 summary: "The interactive tools of the project's language: a REPL to call the code, a debugger to stop it and read its values."
 sensors: [manual-probe]
 layer: project
+vendors:
+  - name: Python
+    url: https://docs.python.org/3/library/pdb.html
+    note: "`python -c` and `pdb`"
+  - name: Node.js
+    url: https://nodejs.org/api/debugger.html
+    note: "`node -e` and `node inspect`"
+  - name: Delve
+    url: https://github.com/go-delve/delve
+    note: Go
+  - name: JShell
+    url: https://docs.oracle.com/en/java/javase/21/jshell/introduction-jshell.html
+    note: Java
+  - name: LLDB
+    url: https://lldb.llvm.org/
+    note: C, C++, Rust, Swift
+  - name: GDB
+    url: https://www.sourceware.org/gdb/
+    note: C, C++, Rust
+  - name: Debug Adapter Protocol
+    url: https://microsoft.github.io/debug-adapter-protocol/
+    note: drives any debugger that speaks it
 ---
 
 Most languages have a REPL to call the code and a debugger to stop it and read its values. Some, such as Go and Rust,
@@ -27,6 +49,3 @@ language and setup, so look for them in the project rather than assume them.
 - **Run inside the project's environment** (its virtual environment, its config), so values match what the tests
   see.
 - **Remove debug output and breakpoints** before the work counts as done.
-
-Examples: `python -c` and `pdb` (Python), `node -e` and `node inspect` (Node.js), Delve (Go), `jshell` (Java), any
-debugger through the Debug Adapter Protocol.

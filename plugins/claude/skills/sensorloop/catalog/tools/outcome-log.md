@@ -3,6 +3,13 @@ title: Outcome log
 summary: "A file in the repository that loops append to: each catch, escape, correction and unconfirmed release, with when and where it happened."
 sensors: [loop-outcomes]
 layer: project
+vendors:
+  - name: JSON Lines
+    url: https://jsonlines.org/
+    note: the file's format, one JSON object per line
+  - name: jq
+    url: https://jqlang.org/
+    note: reads and filters it
 ---
 
 The outcome log is a file in the repository that each loop appends to as it runs. It is the project's own file, so
@@ -34,5 +41,3 @@ A line reads, for example:
 ```json
 {"time":"2026-11-14T09:12:00Z","phase":"production","kind":"escape","place":"src/parse.ts","earliest":"unit tests"}
 ```
-
-Examples: an append-only JSON Lines file.

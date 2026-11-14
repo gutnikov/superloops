@@ -1,10 +1,10 @@
 ---
 // A card's page: /sensors/<id>/, /tools/<id>/, /loops/<id>/, beside its kind's side navigation. Its title and facts,
-// with the cards it is linked to, then its text; its illustration in a column on the right where the page has room,
-// under the facts where it does not.
+// with the cards it is linked to, then its text (a tool's ends with its vendors); its illustration in a column on the
+// right where the page has room, under the facts where it does not.
 import Section from '../../layouts/Section.astro';
 import { catalog, inline, kinds, markdown } from '../../lib/content.js';
-import { KIND, facts, href, illustrationName, illustrationPlace, kicker, source } from '../../lib/present.js';
+import { KIND, facts, href, illustrationName, illustrationPlace, kicker, source, vendors } from '../../lib/present.js';
 
 export function getStaticPaths() {
   const c = catalog();
@@ -14,6 +14,7 @@ export function getStaticPaths() {
 const { kind, id } = Astro.params;
 const c = catalog();
 const card = c.get(kind, id);
+const text = [card.body, vendors(card)].filter(Boolean).join('\n\n');
 ---
 
 <Section
@@ -57,7 +58,7 @@ const card = c.get(kind, id);
       </figure>
 
       <div class="card-body">
-        {card.body && <div class="prose" set:html={markdown(card.body)} />}
+        {text && <div class="prose" set:html={markdown(text)} />}
         <p class="after-note">Built from <a href={source(card)}><code>catalog/{card.file}</code></a>.</p>
       </div>
     </div>

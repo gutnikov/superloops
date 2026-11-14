@@ -3,6 +3,22 @@ title: Rollout controller
 summary: Rolls a release out step by step, checks it against metrics at each step, and rolls it back on failure.
 sensors: [smoke-probe, metrics]
 layer: system
+vendors:
+  - name: Argo Rollouts
+    url: https://argoproj.github.io/rollouts/
+    note: Kubernetes
+  - name: Flagger
+    url: https://flagger.app/
+    note: Kubernetes
+  - name: AWS CodeDeploy
+    url: https://aws.amazon.com/codedeploy/
+    note: AWS
+  - name: Google Cloud Deploy
+    url: https://cloud.google.com/deploy
+    note: Google Cloud
+  - name: Kayenta
+    url: https://github.com/spinnaker/kayenta
+    note: the canary analysis alone, from Spinnaker
 ---
 
 A rollout controller moves traffic from the old version to the new one in steps, checks the new one at each step,
@@ -32,6 +48,3 @@ When there is none, adding one is a decision for the people who run the platform
   `kubectl get canary <name> --watch` in Flagger.
 - **Check the rollback itself** (`kubectl argo rollouts abort <name>`, or the controller's own rollback when a check
   fails): the old version is healthy again afterwards.
-
-Examples: Argo Rollouts and Flagger (Kubernetes), AWS CodeDeploy (AWS); Kayenta for the canary analysis alone
-(Spinnaker).

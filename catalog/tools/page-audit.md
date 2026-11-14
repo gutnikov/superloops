@@ -3,6 +3,20 @@ title: Page audit
 summary: Loads a page and scores its performance, accessibility and best practices, with the audits that cost it points.
 sensors: [performance-measure, browser-run]
 layer: project
+vendors:
+  - name: Lighthouse
+    url: https://developer.chrome.com/docs/lighthouse
+  - name: Lighthouse CI
+    url: https://github.com/GoogleChrome/lighthouse-ci
+    note: Lighthouse in CI, with minimum scores to assert
+  - name: PageSpeed Insights
+    url: https://pagespeed.web.dev/
+    note: Lighthouse with field data, for a public page
+  - name: WebPageTest
+    url: https://www.webpagetest.org/
+  - name: Unlighthouse
+    url: https://unlighthouse.dev/
+    note: Lighthouse over every page of a site
 ---
 
 A page audit needs a running copy of the app, usually a preview, and a browser to load it in.
@@ -25,5 +39,3 @@ optimised, and its performance score misleads.
   (the slow network and CPU the audit simulates) and nothing else heavy running there.
 - **Audit one page while working**: `npx lighthouse <url> --output=json` audits a single page; `lhci autorun` runs
   the whole config as CI does.
-
-Examples: Lighthouse, Lighthouse CI.

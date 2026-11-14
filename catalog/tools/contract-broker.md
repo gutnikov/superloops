@@ -3,6 +3,13 @@ title: Contract broker
 summary: Stores the contracts consumers expect from a service and the provider's verification of each, so a deploy can ask whether it is safe.
 sensors: [test-runner]
 layer: system
+vendors:
+  - name: Pact Broker
+    url: https://github.com/pact-foundation/pact_broker
+    note: open source, run by the team
+  - name: PactFlow
+    url: https://pactflow.io/
+    note: a hosted broker
 ---
 
 A contract is what one consumer expects of a service: the requests it sends and the responses it relies on, usually
@@ -26,5 +33,3 @@ consumer and provider, so it is a decision for a person.
 - **Before a deploy**: `can-i-deploy`, with the version and the target environment, answers yes or no, with the
   contracts behind the answer.
 - **After a deploy**: `record-deployment`, so the next question is checked against what is really running there.
-
-Examples: Pact Broker, PactFlow.

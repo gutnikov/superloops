@@ -3,6 +3,16 @@ title: The issue tracker
 summary: Where bugs, requests and their discussion are kept, with templates that make a report complete.
 sensors: [human-review, user-feedback]
 layer: system
+vendors:
+  - name: GitHub Issues
+    url: https://docs.github.com/en/issues
+    note: issue forms as templates
+  - name: GitLab Issues
+    url: https://docs.gitlab.com/user/project/issues/
+  - name: Jira
+    url: https://www.atlassian.com/software/jira
+  - name: Linear
+    url: https://linear.app/
 ---
 
 The tracker is a service outside the repository, but the clues to which one the project uses are inside it. Look for
@@ -28,5 +38,3 @@ they name, ask a person: choosing a tracker and granting access to it are the te
 - **Count what users report** (User feedback): group the issues users file by label or topic, with how many users
   raised each, duplicates and votes included.
 - **Read a person's bug report as a review** (Human review): it says how the result differs from what was wanted.
-
-Examples: GitHub Issues, GitLab Issues, Jira, Linear.

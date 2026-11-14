@@ -3,6 +3,22 @@ title: Prose linter
 summary: Finds the places in prose that may break plain-language rules or the project's glossary, by word list, pattern and count, as candidates for a reviewer, a model or a person, to confirm.
 sensors: [linter]
 layer: project
+vendors:
+  - name: Vale
+    url: https://vale.sh/
+    note: styles such as write-good, proselint, Microsoft and Google
+  - name: textlint
+    url: https://textlint.org/
+    note: JavaScript, with rules such as textlint-rule-terminology
+  - name: proselint
+    url: https://github.com/amperser/proselint
+    note: Python
+  - name: alex
+    url: https://alexjs.com/
+    note: insensitive wording; JavaScript
+  - name: CSpell
+    url: https://cspell.org/
+    note: spelling, against the project's own word list
 ---
 
 Plain language is writing its reader understands the first time they read it. Some departures from it leave a mark a
@@ -43,6 +59,3 @@ person.
 - **Ask for output the reviewer can read**: `vale --output=JSON`, `textlint --format json` or
   `proselint check --output-format json`, each hit with its file, line, rule and the words it matched.
 - **Word lists belong to one language.** A list built for English finds nothing in another language.
-
-Examples: Vale (with styles such as write-good, proselint, Microsoft and Google), textlint (JavaScript, with rules such
-as textlint-rule-terminology), proselint (Python).

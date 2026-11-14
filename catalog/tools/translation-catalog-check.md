@@ -3,6 +3,22 @@ title: Translation catalog check
 summary: "Checks the project's messages and translations: hard-coded strings, missing keys, placeholders that differ between locales."
 sensors: [structure-check, linter]
 layer: project
+vendors:
+  - name: FormatJS
+    url: https://formatjs.github.io/
+    note: "JavaScript; `formatjs extract` and its ESLint plugin"
+  - name: i18next-cli
+    url: https://github.com/i18next/i18next-cli
+    note: JavaScript, for i18next
+  - name: eslint-plugin-i18next
+    url: https://github.com/edvardchen/eslint-plugin-i18next
+    note: JavaScript; hard-coded strings
+  - name: GNU gettext
+    url: https://www.gnu.org/software/gettext/
+    note: "`msgfmt --check`"
+  - name: Android Lint
+    url: https://developer.android.com/studio/write/lint
+    note: "Android; the `MissingTranslation` check"
 ---
 
 A message catalog is the file that holds the project's messages for one locale (a language, sometimes with its
@@ -28,6 +44,3 @@ apply.
 - **Find hard-coded strings** with a lint rule, such as `no-literal-string` from eslint-plugin-i18next.
 - **Build a pseudo-locale**: accented, lengthened text shows whoever looks at the running app the strings that
   overflow their space or were never translated.
-
-Examples: FormatJS (JavaScript), i18next tooling (JavaScript), gettext's `msgfmt --check`, Android Lint's
-`MissingTranslation` check (Android).
