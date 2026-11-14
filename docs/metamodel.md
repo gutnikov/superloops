@@ -1,10 +1,10 @@
 # Metamodel
 
-We believe every change path should be designed as a set of validation loops. Some loops are short and fast, like running unit tests on a change. Others take longer, like running end-to-end tests. Some run while the work is being done, before anything is pushed to git. Others run later: in CI, on staging, or even after the code has reached real users, like scanning production logs.
+Design the loops, not just the agent. Agentic development runs on feedback loops: an agent makes a change, a check reads it, and the agent fixes what the check found. We treat these loops as first-class parts of a project: named, kept beside the code, measured, and improved when they let a problem through.
 
 <!-- figure -->
 
-A validation loop judges the quality of a change by reading a sensor, and improves the change when the sensor spots a problem.
+We call such a loop a validation loop: it judges the quality of a change by reading a sensor, and improves the change when the sensor spots a problem. Some loops are short and fast, like running unit tests on a change. Others take longer, like running end-to-end tests. Some run while the work is being done, before anything is pushed to git. Others run later: in CI, on staging, or even after the code has reached real users, like scanning production logs.
 
 A successful AI-first development process is built around designing the right loops: loops that do the checking for you. The right set of loops is different for every project and depends on its needs and constraints. It is always a trade-off. A loop costs time, money and attention, so it pays off only where the failure it catches is likely or expensive.
 
