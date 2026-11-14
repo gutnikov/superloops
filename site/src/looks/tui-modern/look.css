@@ -4,6 +4,29 @@
  * Martian Mono, heavy and wide, for the loud titles. A tab bar on top, a powerline status bar at the bottom.
  */
 
+/* Iosevka, cut down to the characters the site shows by scripts/subset-iosevka.mjs (`npm run fonts -w site`): about
+   54 KB a weight instead of 1 MB. The unicode-range is the script's RANGES; a character outside it comes from the
+   fallback fonts. */
+@font-face {
+  font-family: 'Iosevka';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/iosevka-400.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-017F, U+2000-206F, U+20AC, U+2122, U+2190-23FF, U+2500-25FF, U+2700-27BF,
+    U+2800-28FF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Iosevka';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/iosevka-700.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-017F, U+2000-206F, U+20AC, U+2122, U+2190-23FF, U+2500-25FF, U+2700-27BF,
+    U+2800-28FF, U+FFFD;
+}
+
 :root {
   --bg: #191335; /* a colour, not a near-black */
   --pane: #1e1740;

@@ -4,17 +4,21 @@
   "type": "module",
   "scripts": {
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
-    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev"
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "fonts": "node scripts/subset-iosevka.mjs"
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "5.3.0",
     "@fontsource-variable/martian-mono": "5.3.0",
     "@fontsource/ibm-plex-mono": "5.3.0",
     "@fontsource/ibm-plex-serif": "5.3.0",
-    "@fontsource/iosevka": "5.3.0",
     "@sensorloop/catalog": "*",
     "asciinema-player": "3.17.0",
     "astro": "5.18.2",
     "marked": "18.1.2"
+  },
+  "devDependencies": {
+    "@fontsource/iosevka": "5.3.0",
+    "subset-font": "2.9.0"
   }
 }
