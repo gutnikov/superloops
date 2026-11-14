@@ -67,14 +67,6 @@ export function groups(catalog, kind) {
 /** @param {{ kind: string, id: string }} card */
 export const href = (card) => `/${card.kind}/${card.id}/`;
 
-/** The name a card's illustration is served under, beside its page: illustration.svg, illustration.png. */
-export const illustrationName = (/** @type {{ illustration: string }} */ card) =>
-  `illustration${card.illustration.slice(card.illustration.lastIndexOf('.'))}`;
-
-/** Where a card without an illustration would get one: its file, with .svg for .md. */
-export const illustrationPlace = (/** @type {{ file: string }} */ card) =>
-  `catalog/${card.file.replace(/\.md$/, '.svg')}`;
-
 /** The card's file in the repository. */
 export const source = (/** @type {{ file: string }} */ card) =>
   `${config.repository}/blob/${config.branch}/catalog/${card.file}`;
@@ -103,7 +95,7 @@ export function meta(catalog, card) {
     case 'sensors':
       return [['type', card.data.type], ['tools', catalog.toolsOf(card.id).length], ['loops', catalog.loopsOf(card.id).length]];
     case 'tools':
-      return [['builds', card.data.sensors.map((id) => catalog.get('sensors', id).data.title).join(', ')]];
+      return [['produces', card.data.sensors.map((id) => catalog.get('sensors', id).data.title).join(', ')]];
     case 'loops':
       return [['reads', card.data.sensors.map((id) => catalog.get('sensors', id).data.title).join(', ')]];
   }
@@ -121,7 +113,7 @@ export function facts(catalog, card) {
         ['Loops', links(catalog.loopsOf(card.id))],
       ];
     case 'tools':
-      return [['Builds', sensors()]];
+      return [['Produces', sensors()]];
     case 'loops':
       return [
         ['Reads', sensors()],

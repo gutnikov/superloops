@@ -378,7 +378,6 @@ button.seg-key:focus-visible kbd {
 .pane,
 .title-block,
 .facts,
-.card-figure,
 .card-body,
 .section-content,
 .sidenav,
@@ -392,7 +391,6 @@ button.seg-key:focus-visible kbd {
 .pane,
 .title-block,
 .facts,
-.card-figure,
 .card-body {
   padding: 1.6rem clamp(1rem, 2.5vw, 2rem) 1.4rem;
 }
@@ -401,7 +399,6 @@ button.seg-key:focus-visible kbd {
 .pane-title,
 .title-block::before,
 .facts::before,
-.card-figure::before,
 .card-body::before,
 .section-content::before,
 .sidenav-title,
@@ -1514,16 +1511,12 @@ button.seg-key:focus-visible kbd {
   outline-offset: -2px;
 }
 
-/* ---------------------------------------------------------------- a card: its head, facts, illustration and text */
-
-.card {
-  container-type: inline-size;
-}
+/* ---------------------------------------------------------------- a card: its head, facts and text */
 
 .card-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: 'title' 'facts' 'figure' 'body';
+  grid-template-areas: 'title' 'facts' 'body';
   gap: 2.25rem;
 }
 
@@ -1543,28 +1536,8 @@ button.seg-key:focus-visible kbd {
   grid-area: facts;
 }
 
-.card-figure {
-  grid-area: figure;
-}
-
 .card-body {
   grid-area: body;
-}
-
-@container (min-width: 50rem) {
-  .card-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
-    grid-template-areas:
-      'title figure'
-      'facts figure'
-      'body figure';
-  }
-
-  .card-figure {
-    position: sticky;
-    top: calc(var(--bar) + 1.75rem);
-    align-self: start;
-  }
 }
 
 /* The facts: a key-value pane. */
@@ -1605,50 +1578,6 @@ button.seg-key:focus-visible kbd {
 
 .facts dd.chips {
   padding-top: 0.05rem;
-}
-
-/* The illustration, or the place one will go. */
-.card-figure {
-  margin: 0;
-}
-
-.card-figure::before {
-  content: 'illustration';
-}
-
-.card-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.card-figure-empty {
-  display: grid;
-  place-content: center;
-  gap: 0.6rem;
-  min-height: 12rem;
-  padding: 1rem;
-  border: 1px dashed var(--line);
-  border-radius: 5px;
-  background:
-    radial-gradient(circle, var(--line) 1px, transparent 1.5px) 0 0 / 1ch 0.75rem,
-    var(--well);
-  color: var(--dim);
-  text-align: center;
-}
-
-.card-figure-empty span {
-  justify-self: center;
-  padding: 0 1ch;
-  background: var(--well);
-}
-
-.card-figure-empty code {
-  justify-self: center;
-  max-width: 100%;
-  font-size: 0.75rem;
-  overflow-wrap: anywhere;
 }
 
 .card-body::before {
@@ -2008,7 +1937,6 @@ button.seg-key:focus-visible kbd {
   .pane,
   .title-block,
   .facts,
-  .card-figure,
   .card-body,
   .desk-list .section-content {
     padding-left: 1rem;

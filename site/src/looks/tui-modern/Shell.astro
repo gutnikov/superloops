@@ -66,7 +66,7 @@ const cards = kinds.flatMap((k) =>
             ['loops', linked(c.loopsOf(card.id))],
           ]
         : k === 'tools'
-          ? [['builds', linked(card.data.sensors.map((id: string) => c.get('sensors', id)))]]
+          ? [['produces', linked(card.data.sensors.map((id: string) => c.get('sensors', id)))]]
           : [
               ['reads', linked(card.data.sensors.map((id: string) => c.get('sensors', id)))],
               ['tools', linked(c.toolsFor(card))],
@@ -111,6 +111,7 @@ const docHtml =
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {
       [iosevka400, iosevka700, martianMono].map((font) => (
         <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />

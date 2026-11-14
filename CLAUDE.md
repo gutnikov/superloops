@@ -6,8 +6,6 @@ The catalog of sensors, tools and loops, the plugins built from it, and the site
 
 - `catalog/`: the cards, the only home of their content. `sensors/<id>.md`, `tools/<id>.md`, `loops/<id>/card.md`
   (a loop's folder will also hold its scripts). Front matter is checked against `catalog/schema/`.
-- A card's illustration sits beside it, with its name and an image extension (`sensors/<id>.svg`,
-  `loops/<id>/card.png`); the site shows it to the right of the card. No front matter field names it.
 - Cards are written for any project, whatever its stack. A tool tied to a language is described as a role (the
   project's test command, found in the project). The products that can play the role, from several stacks, are its
   `vendors` in the front matter, each with a link and a short note; the site shows them as the card's last section.
