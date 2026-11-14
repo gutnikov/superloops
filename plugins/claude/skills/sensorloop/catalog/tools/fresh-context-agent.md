@@ -1,6 +1,6 @@
 ---
 title: Fresh-context agent
-summary: A separate agent run that starts with none of the working session's context, has read-only tools, and returns a structured verdict.
+summary: A separate agent run that starts with none of the working session's context, cannot change the work, and returns a structured verdict.
 sensors: [llm-reviewer, llm-judge]
 layer: agent
 ---
@@ -20,7 +20,9 @@ fail with a critique, or a score.
 
 - **Hand it the work to read** (a diff, a file, a spec) and a checklist, not the story of how the work was done.
 - **Give it read-only tools**: the `tools` list in a subagent's definition, or `--tools` for `claude -p`; `codex exec`
-  runs in a read-only sandbox by default.
+  runs in a read-only sandbox by default. A run that must run the work, such as one that tries to prove a claim of
+  done wrong by running the tests and the app, runs in a scratch copy of the work, so nothing it does reaches the
+  working tree, and has no tool that edits the files it judges.
 - **Ask for output the loop can parse**: a JSON schema, passed with `--json-schema` to `claude -p` or with
   `--output-schema` to `codex exec`.
 - **Limit its run**, so a stuck review ends: `--max-turns` for `claude -p`, or a timeout around the command.

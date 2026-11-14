@@ -1,6 +1,6 @@
 ---
 title: The agent's hooks
-summary: "Commands the coding agent runs before and after each tool call and when it is about to stop: a hook can record a call, refuse it, or keep the agent from stopping."
+summary: "Commands the coding agent runs before and after each tool call, when a call needs permission, and when it is about to stop: a hook can record a call, refuse it, answer the permission prompt, or keep the agent from stopping."
 sensors: [agent-activity]
 layer: agent
 ---
@@ -23,6 +23,9 @@ from `.cursor/hooks.json`. A hook runs with the user's full rights, so a person 
 - **Refuse**: a `PreToolUse` hook that exits with code 2 blocks the call, and what it writes to standard error goes
   back to the agent as the reason. Any other non-zero exit code counts as an error of the hook, and the call goes
   ahead.
+- **Answer a permission prompt**: a `PermissionRequest` hook runs when a tool call needs a permission decision, where
+  the agent would otherwise ask the person, and can allow or deny the call in their place, for example with a
+  reviewer model's verdict. It gives no answer for the commands a person must confirm, so the person is still asked.
 - **Keep the agent working**: a `Stop` hook runs the project's checks, such as its tests and linter, and when they
   fail it exits with code 2, with the failure as the reason. The hook's input says whether the agent is already
   continuing because of a stop hook (`stop_hook_active`). The hook reads it, or counts its own blocks, and after a few
@@ -32,4 +35,5 @@ from `.cursor/hooks.json`. A hook runs with the user's full rights, so a person 
 A hook runs on every call it matches, so a slow hook slows each of them. Keep hooks fast, and match only the tools
 they check (the `matcher` field in Claude Code).
 
-Examples: Claude Code hooks (`PreToolUse`, `PostToolUse`, `Stop`), Cursor hooks (`preToolUse`, `postToolUse`, `stop`).
+Examples: Claude Code hooks (`PreToolUse`, `PermissionRequest`, `PostToolUse`, `Stop`), Cursor hooks (`preToolUse`,
+`postToolUse`, `stop`).
