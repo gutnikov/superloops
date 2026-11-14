@@ -14,7 +14,9 @@
     "build:plugin": "node packages/catalog/src/export.js plugins/claude/skills/sensorloop/catalog",
     "check:plugin": "node packages/catalog/src/export.js --check plugins/claude/skills/sensorloop/catalog && claude plugin validate plugins/claude && claude plugin validate .",
     "dev": "npm run dev -w site",
-    "build": "npm run build -w site"
+    "build": "npm run build -w site",
+    "lighthouse": "npm run lighthouse -w site",
+    "lighthouse:live": "npm run lighthouse:live -w site"
   },
   "overrides": {
     "@babel/runtime": "7.29.10",

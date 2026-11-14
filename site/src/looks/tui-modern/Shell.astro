@@ -5,6 +5,11 @@
 // served from the site itself, Cloudflare Web Analytics and no banner.
 import '@fontsource-variable/martian-mono/wdth.css';
 import './look.css';
+// The fonts of the first screen, asked for with the page instead of after its CSS: when one arrives after the first
+// paint, the text set in the fallback font moves (the page audit, site/lighthouserc.yml, measures that shift).
+import iosevka400 from './fonts/iosevka-400.woff2?url';
+import iosevka700 from './fonts/iosevka-700.woff2?url';
+import martianMono from '@fontsource-variable/martian-mono/files/martian-mono-latin-wdth-normal.woff2?url';
 import Pane from './Pane.astro';
 import { analyticsSnippet, config } from '../../config.mjs';
 import { catalog, kinds } from '../../lib/content.js';
@@ -78,6 +83,23 @@ const cards = kinds.flatMap((k) =>
   }),
 );
 const json = JSON.stringify(cards).replace(/</g, '\\u003c');
+
+// A doc's sections, with the ids its outline links to. Built here, not in the browser: on a narrow screen the outline
+// stands above the doc, and a list filled in after the first paint pushed the whole doc down the page.
+const text = (html: string) =>
+  html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&(amp|lt|gt|quot|#39);/g, (_, e) => ({ amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'" })[e as string]!);
+const sections: { id: string; label: string }[] = [];
+const docHtml =
+  view === 'doc'
+    ? (await Astro.slots.render('default')).replace(/<h2>([\s\S]*?)<\/h2>/g, (_, label: string) => {
+        const slug = text(label).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        const id = `s-${sections.length + 1}-${slug}`;
+        sections.push({ id, label });
+        return `<h2 id="${id}">${label}</h2>`;
+      })
+    : '';
 ---
 
 <html lang="en" data-look="tui-modern">
@@ -89,6 +111,11 @@ const json = JSON.stringify(cards).replace(/</g, '\\u003c');
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {
+      [iosevka400, iosevka700, martianMono].map((font) => (
+        <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />
+      ))
+    }
     <Fragment set:html={analyticsSnippet()} />
   </head>
   <body class={bodyClass} data-view={view} data-kind={kind}>
@@ -120,13 +147,21 @@ const json = JSON.stringify(cards).replace(/</g, '\\u003c');
         view === 'doc' ? (
           <div class="doc">
             <Pane title={file} hotkey={here?.key} primary class="pane-doc">
-              <slot />
+              <Fragment set:html={docHtml} />
             </Pane>
-            <Pane title="outline" class="pane-outline" id="doc-outline">
-              <nav aria-label="Sections of the page">
-                <ol class="outline" />
-              </nav>
-            </Pane>
+            {sections.length > 1 && (
+              <Pane title="outline" class="pane-outline" id="doc-outline">
+                <nav aria-label="Sections of the page">
+                  <ol class="outline">
+                    {sections.map((s) => (
+                      <li>
+                        <a href={`#${s.id}`} set:html={s.label} />
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              </Pane>
+            )}
           </div>
         ) : (
           <slot />
@@ -268,22 +303,6 @@ const json = JSON.stringify(cards).replace(/</g, '\\u003c');
       for (const code of document.querySelectorAll<HTMLElement>('.prose pre > code')) {
         const lang = [...code.classList].find((c) => c.startsWith('language-'))?.slice(9);
         code.parentElement!.dataset.lang = lang || 'text';
-      }
-
-      // ---------------------------------------------------------------- a doc's outline
-
-      if (view === 'doc') {
-        const pane = document.getElementById('doc-outline');
-        const list = pane?.querySelector('.outline');
-        const heads = [...document.querySelectorAll<HTMLElement>('.pane-doc .prose h2')];
-        if (pane && list && heads.length > 1) {
-          list.innerHTML = heads
-            .map((h, i) => {
-              h.id ||= `s-${i + 1}-${(h.textContent || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
-              return `<li><a href="#${h.id}">${esc(h.textContent || '')}</a></li>`;
-            })
-            .join('');
-        } else pane?.setAttribute('hidden', '');
       }
 
       // ---------------------------------------------------------------- a kind's list: bars, selection, preview

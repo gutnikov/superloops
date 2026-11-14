@@ -1,0 +1,38 @@
+# The page audit of sensorloop.dev (catalog/loops/lighthouse-ci): Lighthouse CI loads the built site's pages in Chrome,
+# three times each under the same simulated phone and slow network, and fails when a score falls under its minimum.
+# `npm run lighthouse` after `npm run build`; CI runs it on every pull request. Only a person changes a threshold here: a
+# page that fails is fixed in the site, never by lowering its minimum.
+ci:
+  collect:
+    # The production build, served from its folder: the site is static, and there is no preview to audit.
+    staticDistDir: ./dist
+    # One page of each template: the home page, a doc, a kind's list, and a card.
+    url:
+      - http://localhost/
+      - http://localhost/get-started/
+      - http://localhost/loops/
+      - http://localhost/loops/verification-subagent/
+      - http://localhost/sensors/test-runner/
+    numberOfRuns: 3
+    settings:
+      # Cloudflare Web Analytics sends each view to its own origin, which refuses a page served from localhost; the
+      # error that logs belongs to the audit's address, not to the site. Its script still loads and is measured.
+      blockedUrlPatterns: ['*cloudflareinsights.com/cdn-cgi/rum*']
+  assert:
+    assertions:
+      # Scores and timings vary from run to run: judged on the median, not on the run most likely to pass.
+      categories:performance: [error, { minScore: 0.9, aggregationMethod: median }]
+      # Text that jumps as the page loads, such as when a webfont arrives: Google's limit for a good page.
+      cumulative-layout-shift: [error, { maxNumericValue: 0.1, aggregationMethod: median }]
+      # These scores come from fixed rules, the same on every run; every page meets all of them today.
+      categories:accessibility: [error, { minScore: 1 }]
+      categories:best-practices: [error, { minScore: 1 }]
+      categories:seo: [error, { minScore: 1 }]
+      # What a page downloads, in bytes. A page is 196 KB today, 150 KB of it fonts (scripts/subset-iosevka.mjs cut
+      # Iosevka from 1.9 MB), and 15 KB of scripts.
+      resource-summary:total:size: [error, { maxNumericValue: 300000 }]
+      resource-summary:script:size: [error, { maxNumericValue: 40000 }]
+  upload:
+    # The reports stay on the machine (in CI, the run's artifact): nothing is sent to a public server.
+    target: filesystem
+    outputDir: ./.lighthouseci/reports

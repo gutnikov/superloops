@@ -1,6 +1,6 @@
 # On every pull request and every push to main: the catalog against its schemas and references, the loader's tests,
 # a build of the site, and the Claude Code plugin: its copy of the catalog is current, and it and the marketplace are
-# valid. Nothing is deployed here, and no model is called.
+# valid. Beside it, the page audit scores the built site in Chrome. Nothing is deployed here, and no model is called.
 name: check
 
 on:
@@ -29,3 +29,25 @@ jobs:
         run: |
           npm install -g @anthropic-ai/claude-code@2.1.312
           npm run check:plugin
+
+  # The page audit (catalog/loops/lighthouse-ci): Lighthouse CI loads the built site's pages in the runner's Chrome,
+  # three times each, and fails when a median score is under its minimum in site/lighthouserc.yml. The reports of
+  # every run are kept as the run's artifact, `lighthouse`: the representative one shows what cost the points.
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lighthouse
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse
+          path: site/.lighthouseci/
+          include-hidden-files: true
