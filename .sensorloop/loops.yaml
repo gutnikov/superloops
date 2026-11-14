@@ -47,6 +47,7 @@ loops:
       https://sensorloop.dev (site/scripts/lighthouse-live.mjs). A PreToolUse hook on Edit|Write|MultiEdit|NotebookEdit
       refuses the agent's edits to site/lighthouserc.yml and site/scripts/lighthouse-live.mjs, by real path
       (.sensorloop/hooks/protect.sh); a shell command that writes them is held only by LOOPS.md and the PR's review.
+      `check` and `lighthouse` are required checks on main (branch protection, administrators included, no reviews).
     proved: 2026-11-14
   - id: llm-evals
     status: proposed
