@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.sensorloop/hooks/protect.sh site/lighthouserc.yml"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.sensorloop/hooks/protect.sh site/lighthouserc.yml site/scripts/lighthouse-live.mjs"
           }
         ]
       }

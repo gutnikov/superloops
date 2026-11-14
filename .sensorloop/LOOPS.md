@@ -41,8 +41,9 @@ and the report.
 `git push`, and the site's deploy (`npx wrangler@4 deploy`). A refused action is not tried another way (a rewritten
 command, a script, `gh api`): say what you did not do and go on with the rest, or ask what to do instead.
 
-Only a person changes the page audit's thresholds: a hook refuses your edits to `site/lighthouserc.yml`. When you think
-a threshold is wrong, tell the person what to change and why.
+Only a person changes the page audit's thresholds and pages: a hook refuses your edits to `site/lighthouserc.yml` and
+`site/scripts/lighthouse-live.mjs`. Do not change them, or the scripts and CI job that run the audit, any other way.
+When you think a threshold is wrong, tell the person what to change and why.
 
 ## After a deploy
 
