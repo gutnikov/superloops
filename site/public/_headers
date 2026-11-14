@@ -1,7 +1,0 @@
-# Headers Cloudflare adds to the static assets (Workers static assets read this file from dist/).
-
-# A card's illustration is served from the site's own origin. Opened on its own, an SVG runs in a sandbox with no
-# scripts, whatever it holds; the catalog's loader also rejects SVGs that carry scripts.
-/:kind/:id/illustration.svg
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src data:; sandbox
-  X-Content-Type-Options: nosniff

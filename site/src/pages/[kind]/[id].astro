@@ -1,10 +1,9 @@
 ---
 // A card's page: /sensors/<id>/, /tools/<id>/, /loops/<id>/, beside its kind's side navigation. Its title and facts,
-// with the cards it is linked to, then its text (a tool's ends with its vendors); its illustration in a column on the
-// right where the page has room, under the facts where it does not.
+// with the cards it is linked to, then its text (a tool's ends with its vendors).
 import Section from '../../layouts/Section.astro';
 import { catalog, inline, kinds, markdown } from '../../lib/content.js';
-import { KIND, facts, href, illustrationName, illustrationPlace, kicker, source, vendors } from '../../lib/present.js';
+import { KIND, facts, kicker, source, vendors } from '../../lib/present.js';
 
 export function getStaticPaths() {
   const c = catalog();
@@ -43,19 +42,6 @@ const text = [card.body, vendors(card)].filter(Boolean).join('\n\n');
           }
         </dl>
       </div>
-
-      <figure class:list={['card-figure', { 'is-empty': !card.illustration }]}>
-        {
-          card.illustration ? (
-            <img src={`${href(card)}${illustrationName(card)}`} alt={`Illustration: ${card.data.title}`} />
-          ) : (
-            <div class="card-figure-empty">
-              <span>No illustration yet</span>
-              <code>{illustrationPlace(card)}</code>
-            </div>
-          )
-        }
-      </figure>
 
       <div class="card-body">
         {text && <div class="prose" set:html={markdown(text)} />}

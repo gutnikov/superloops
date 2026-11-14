@@ -94,58 +94,8 @@ test('a card with no front matter, and an id that is not one', () => {
   ]);
 });
 
-test('an illustration beside its card, with the card file name', () => {
-  const c = loadCatalog(
-    catalog({
-      'sensors/test-runner.md': SENSOR,
-      'sensors/test-runner.svg': '<svg xmlns="http://www.w3.org/2000/svg"/>',
-      'tools/project-test-command.md': TOOL,
-      'loops/red-green-tdd/card.md': LOOP,
-      'loops/red-green-tdd/card.png': 'png',
-    }),
-  );
-  assert.equal(c.get('sensors', 'test-runner').illustration, 'sensors/test-runner.svg');
-  assert.equal(c.get('loops', 'red-green-tdd').illustration, 'loops/red-green-tdd/card.png');
-  assert.equal(c.get('tools', 'project-test-command').illustration, null);
-});
-
-test('an illustration with no card, and a card with two', () => {
-  assert.deepEqual(
-    problems({
-      'sensors/test-runner.md': SENSOR,
-      'sensors/test-runner.svg': '<svg/>',
-      'sensors/test-runner.png': 'png',
-      'sensors/linter.svg': '<svg/>',
-    }),
-    [
-      'sensors/linter.svg: an illustration with no card (linter.md)',
-      'sensors/test-runner.md: more than one illustration (test-runner.png, test-runner.svg); keep one',
-    ],
-  );
-});
-
-test('an SVG illustration that could run script on the site', () => {
-  const svg = (inside) => `<svg xmlns="http://www.w3.org/2000/svg">${inside}</svg>`;
-  const cases = {
-    'a <script> element': '<script>alert(1)</script>',
-    'a namespaced <script> element': '<svg:script>alert(1)</svg:script>',
-    'an event handler': '<rect onload="alert(1)"/>',
-    'a javascript: link': '<a href="javascript:alert(1)"><text>x</text></a>',
-    'an entity-encoded link': '<a xlink:href="&#106;avascript:alert(1)"><text>x</text></a>',
-    'embedded HTML': '<foreignObject><div>x</div></foreignObject>',
-    'an animated link': '<a><set attributeName="href" to="javascript:alert(1)"/></a>',
-  };
-  for (const [name, inside] of Object.entries(cases)) {
-    const found = problems({ 'sensors/test-runner.md': SENSOR, 'sensors/test-runner.svg': svg(inside) });
-    assert.equal(found.length > 0, true, `${name} was let through`);
-    assert.match(found[0], /^sensors\/test-runner\.svg: an SVG illustration may not carry /, name);
-  }
-  // A plain drawing, with a link to one of its own elements, is fine.
-  const c = loadCatalog(
-    catalog({
-      'sensors/test-runner.md': SENSOR,
-      'sensors/test-runner.svg': svg('<defs><path id="p" d="M0 0h1"/></defs><use href="#p"/><rect width="1" height="1"/>'),
-    }),
-  );
-  assert.equal(c.get('sensors', 'test-runner').illustration, 'sensors/test-runner.svg');
+test('an image beside a card is not a card', () => {
+  assert.deepEqual(problems({ 'sensors/test-runner.md': SENSOR, 'sensors/test-runner.svg': '<svg/>' }), [
+    'sensors/test-runner.svg: not a card; a card here is <id>.md',
+  ]);
 });
